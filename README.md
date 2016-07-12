@@ -1,2 +1,2 @@
 # MicroarchitectureTesting
-Project for the Verification and Testing Methods course
+Project for the Verification and Testing Methods course.
