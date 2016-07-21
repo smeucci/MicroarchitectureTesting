@@ -1,61 +1,15 @@
-
-import java.util.*;
+package buildercomposite;
 
 /**
  * 
  */
-public class Component {
-
-    /**
-     * Default constructor
-     */
-    public Component() {
-    }
-
-    /**
-     * 
-     */
-    public Composite ArrayList<Component>ChilderList;
-
-
-    /**
-     * 
-     */
-    public Composite ArrayList<Component>ChildrenList;
-
-    /**
-     * 
-     */
-    public void Operation() {
-        // TODO implement here
-    }
-
-    /**
-     * @param Component c
-     */
-    public void AddComponent(void Component c) {
-        // TODO implement here
-    }
-
-    /**
-     * @param Component c
-     */
-    public void Remove(void Component c) {
-        // TODO implement here
-    }
-
-    /**
-     * @param int i
-     */
-    public void GetChild(void int i) {
-        // TODO implement here
-    }
-
-    /**
-     * 
-     */
-    public interface Interface1 {
-
-    }
+public abstract class Component {
+	
+	public abstract void draw();
+    public abstract Boolean evaluate();
+    public abstract void add(Component c);
+    public abstract String getName();
+    public abstract Boolean getValue();
+    public abstract void setValue(Boolean b);
 
 }
