@@ -4,12 +4,12 @@ import java.util.*;
 /**
  * 
  */
-public class Boolean ExprBuilder {
+public class BooleanExprBuilder {
 
     /**
      * Default constructor
      */
-    public Boolean ExprBuilder() {
+    public BooleanExprBuilder() {
     }
 
     /**

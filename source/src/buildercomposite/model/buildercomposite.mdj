@@ -430,7 +430,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "Boolean ExprBuilder",
+											"text": "BooleanExprBuilder",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5
 										},
@@ -721,8 +721,8 @@
 									"showShadow": true,
 									"containerChangeable": false,
 									"containerExtending": false,
-									"left": -16,
-									"top": -144,
+									"left": -24,
+									"top": -152,
 									"width": 10,
 									"height": 10,
 									"autoResize": false
@@ -745,8 +745,8 @@
 									"showShadow": true,
 									"containerChangeable": false,
 									"containerExtending": false,
-									"left": -16,
-									"top": -144,
+									"left": -24,
+									"top": -152,
 									"width": 10,
 									"height": 10,
 									"autoResize": false
@@ -5022,7 +5022,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "Boolean ExprBuilder",
+					"name": "BooleanExprBuilder",
 					"ownedElements": [
 						{
 							"_type": "UMLAssociation",

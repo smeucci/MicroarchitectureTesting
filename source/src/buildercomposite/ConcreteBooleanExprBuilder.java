@@ -4,7 +4,7 @@ import java.util.*;
 /**
  * 
  */
-public class ConcreteBooleanExprBuilder extends Boolean ExprBuilder {
+public class ConcreteBooleanExprBuilder extends BooleanExprBuilder {
 
     /**
      * Default constructor
