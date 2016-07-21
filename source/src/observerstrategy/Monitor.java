@@ -1,3 +1,4 @@
+package observerstrategy;
 
 import java.util.*;
 
@@ -15,7 +16,7 @@ public class Monitor extends Subject {
     /**
      * 
      */
-    private void state;
+    private State state;
 
     /**
      * 

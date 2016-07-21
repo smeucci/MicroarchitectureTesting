@@ -1,3 +1,4 @@
+package observerstrategy;
 
 import java.util.*;
 
@@ -20,21 +21,21 @@ public class Subject {
     /**
      * @param Observer
      */
-    public void attach(void Observer) {
+    public void attachObserver(Observer o) {
         // TODO implement here
     }
 
     /**
      * @param Observer
      */
-    public void detach(void Observer) {
+    public void detachObserver(Observer o) {
         // TODO implement here
     }
 
     /**
      * 
      */
-    public void notify() {
+    public void notifyObserver() {
         // TODO implement here
     }
 

@@ -1,3 +1,4 @@
+package observerstrategy;
 
 import java.util.*;
 

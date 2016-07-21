@@ -1,3 +1,4 @@
+package observerstrategy;
 
 import java.util.*;
 
@@ -15,7 +16,7 @@ public class Context {
     /**
      * 
      */
-    public void observerState;
+    public State observerState;
 
 
 
