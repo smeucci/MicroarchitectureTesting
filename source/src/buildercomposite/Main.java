@@ -8,8 +8,8 @@ public class Main {
 		Director director = new Director(builder);
 		director.ConstructExpr(true, false, false);
 		
-		String[] ops = {"var", "var", "and", "par", "var", "or"};
-		Boolean[] bs = {true, false, true};
+		String[] ops = {"var", "var", "and", "par", "var", "or", "var", "and"};
+		Boolean[] bs = {true, true, true, false};
 		director.ConstructGenericExpr(ops, bs);
 	
 	}
