@@ -4,7 +4,7 @@ package defensivecopy;
  * 
  */
 public class DegreeCourse {
-
+	
 	private final String name;
 	private final String degree;
 	

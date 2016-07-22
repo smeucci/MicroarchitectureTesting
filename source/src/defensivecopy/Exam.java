@@ -4,7 +4,7 @@ package defensivecopy;
  * 
  */
 public final class Exam {
-
+	
 	private final String name;
 	private final int score;
 	private final int cfu;
