@@ -21,7 +21,6 @@ public final class Exam {
         this.cfu = e.getCFU();
     }
 
-    
     public String getName() {
     	return this.name;
     }
