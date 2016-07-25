@@ -1,24 +1,11 @@
 package observerstrategy;
 
-import java.util.*;
-
 /**
  * @author Lorenzo Cioni
  */
-public class Strategy {
-
+public interface Strategy {
     /**
-     * Default constructor
+     * Strategy to be implemented in concrete objects
      */
-    public Strategy() {
-    }
-
-
-    /**
-     * 
-     */
-    public void algorithmInterface() {
-        // TODO implement here
-    }
-
+    public void algorithmInterface();
 }

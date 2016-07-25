@@ -6,37 +6,39 @@ import java.util.*;
  * @author Lorenzo Cioni
  */
 public class Subject {
+	
+	private ArrayList<Observer> observers; 
 
     /**
      * Default constructor
      */
     public Subject() {
+    	observers = new ArrayList<Observer>();
     }
 
     /**
-     * 
-     */
-    private Set<Observer> observers;
-
-    /**
+     * Add an observer to the subject
      * @param Observer
      */
     public void attachObserver(Observer o) {
-        // TODO implement here
+        observers.add(o);
     }
 
     /**
+     * Remove an observer from the subject
      * @param Observer
      */
     public void detachObserver(Observer o) {
-        // TODO implement here
+        observers.remove(o);
     }
 
     /**
-     * 
+     * Wakes observers and updates
      */
-    public void notifyObserver() {
-        // TODO implement here
+    public void notifyObservers() {
+        for (Observer observer : observers) {
+			observer.update();
+		}
     }
 
 }

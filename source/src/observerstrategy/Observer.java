@@ -1,23 +1,10 @@
 package observerstrategy;
-
-import java.util.*;
-
 /**
  * @author Lorenzo Cioni
  */
-public class Observer {
-
+public interface Observer {
     /**
-     * Default constructor
+     * Update method: to be implemented in composite classes
      */
-    public Observer() {
-    }
-
-    /**
-     * 
-     */
-    public void update() {
-        // TODO implement here
-    }
-
+    public void update();
 }

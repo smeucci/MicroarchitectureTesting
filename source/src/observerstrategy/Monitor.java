@@ -6,30 +6,25 @@ import java.util.*;
  * @author Lorenzo Cioni
  */
 public class Monitor extends Subject {
+	private State state;
 
     /**
      * Default constructor
      */
     public Monitor() {
+    	state = State.READY;
     }
 
     /**
-     * 
+     * Get and set state
      */
-    private State state;
-
-    /**
-     * 
-     */
-    public void getState() {
-        // TODO implement here
+    public State getState() {
+        return state;
     }
 
-    /**
-     * 
-     */
-    public void setState() {
-        // TODO implement here
+    public void setState(State state) {
+        this.state = state;
+        notifyObservers();
     }
 
 }

@@ -5,33 +5,44 @@ import java.util.*;
 /**
  * @author Lorenzo Cioni
  */
-public class Context {
-
+public class Context implements Observer {
+	
+	private Strategy strategy;
+	private Monitor monitor;
+	private State state;
+	
     /**
      * Default constructor
      */
-    public Context() {
+    public Context(Strategy s, Monitor m) {
+    	this.monitor = m;
+    	this.strategy = s;
+    	state = m.getState();
     }
 
     /**
-     * 
-     */
-    public State observerState;
-
-
-
-    /**
-     * 
+     * Updates monitor
      */
     public void update() {
-        // TODO implement here
+        state = monitor.getState();
+        switch (state) {
+		case READY:
+			strategy = StrategyReady.getInstance();
+			break;
+		case ON:
+			strategy = StrategyOn.getInstance();
+			break;
+		case OFF:
+			strategy = StrategyOff.getInstance();
+			break;
+		default:
+			break;
+		}
+        
     }
 
-    /**
-     * 
-     */
     public void contextInterface() {
-        // TODO implement here
+        strategy.algorithmInterface();
     }
 
 }
