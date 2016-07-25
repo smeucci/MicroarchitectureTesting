@@ -21,8 +21,9 @@ public class StrategyReady implements Strategy {
     /**
      * Print algorithm
      */
-    public void algorithmInterface() {
-    	System.out.println("Ho eseguito l'operazione utilizzando la Strategia Ready");
+    public State algorithmInterface() {
+    	System.out.println("Ready Strategy");
+    	return State.READY;
     }
 
 }

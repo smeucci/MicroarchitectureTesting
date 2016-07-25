@@ -1,7 +1,10 @@
 *.*~
-/bin/
+/bin/*
 
 .project
 
 .classpath
 /.DS_Store
+/target/
+/.settings/*
+pom.xml

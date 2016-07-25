@@ -21,8 +21,9 @@ public class StrategyOn implements Strategy {
     /**
      * Print algorithm
      */
-    public void algorithmInterface() {
-    	System.out.println("Ho eseguito l'operazione utilizzando la Strategia On");
+    public State algorithmInterface() {
+    	System.out.println("On Strategy");
+    	return State.ON;
     }
 
 }

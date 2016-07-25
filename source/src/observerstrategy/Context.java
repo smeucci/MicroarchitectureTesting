@@ -40,8 +40,8 @@ public class Context implements Observer {
 		}  
     }
 
-    public void contextInterface() {
-        strategy.algorithmInterface();
+    public State contextInterface() {
+        return strategy.algorithmInterface();
     }
 
 	public Monitor getMonitor() {

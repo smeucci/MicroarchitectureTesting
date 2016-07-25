@@ -21,8 +21,9 @@ public class StrategyOff implements Strategy {
     /**
      * Print algorithm
      */
-    public void algorithmInterface() {
-    	System.out.println("Ho eseguito l'operazione utilizzando la Strategia Off");
+    public State algorithmInterface() {
+    	System.out.println("Off Strategy");
+    	return State.OFF;
     }
 
 }

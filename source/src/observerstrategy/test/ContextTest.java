@@ -13,13 +13,14 @@ import observerstrategy.StrategyReady;
 public class ContextTest {
 	
 	private Context context;
+	private Monitor monitor;
 
 	@Before
 	public void setup() throws Exception {
-		Monitor m = new Monitor();
+		monitor = new Monitor();
 		Strategy s;
 		s = StrategyReady.getInstance();
-		context = new Context(s, m);
+		context = new Context(s, monitor);
 	}
 
 	/**
@@ -29,30 +30,24 @@ public class ContextTest {
 	 */
 	@Test
 	public void initialStateTest(){
-		assertEquals("Initial state not set to READY", State.ON, context.getState());
+		assertEquals("Initial state not set to READY", State.READY, context.getState());
 	}
 	
 	/**
 	 * Test: 2
 	 * Descrizione: il metodo update si comporta in modo diverso a seconda
-	 * dello stato del soggetto rilevato dal monitor. In caso di staato READY
-	 * utilizzerò la strategia READY, etc.
+	 * dello stato del soggetto rilevato dal monitor. In caso di stato READY
+	 * utilizzerò la strategia READY, etc. e la strategia da come risultato quello atteso
 	 */
-	
+	@Test
+	public void updateChangesState(){
+		monitor.attachObserver(context);
+		monitor.setState(State.READY);
+		assertEquals("Ready strategy not called proprerly", State.READY, context.contextInterface());
+		monitor.setState(State.ON);
+		assertEquals("On strategy not called proprerly", State.ON, context.contextInterface());
+		monitor.setState(State.OFF);
+		assertEquals("Off strategy not called proprerly", State.OFF, context.contextInterface());
+	}
 
-	/**
-	 * Test: 3
-	 * Descrizione: la strategia da come risultato quello atteso
-	 
-	 */
-	
-	/**
-	 * Test: 4
-	 * Descrizione: al cambio di stato corrisponde una notifica agli observers
-	 */
-	
-	/**
-	 * Test: 5
-	 * Descrizione: la registrazione dell'observer va a buon fine
-	 */
 }

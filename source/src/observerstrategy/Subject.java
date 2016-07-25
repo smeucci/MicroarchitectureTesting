@@ -41,4 +41,14 @@ public class Subject {
 		}
     }
 
+	public ArrayList<Observer> getObservers() {
+		return observers;
+	}
+
+	public void setObservers(ArrayList<Observer> observers) {
+		this.observers = observers;
+	}
+    
+    
+
 }
