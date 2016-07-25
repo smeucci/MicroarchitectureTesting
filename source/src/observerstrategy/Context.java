@@ -37,12 +37,27 @@ public class Context implements Observer {
 			break;
 		default:
 			break;
-		}
-        
+		}  
     }
 
     public void contextInterface() {
         strategy.algorithmInterface();
     }
+
+	public Monitor getMonitor() {
+		return monitor;
+	}
+
+	public void setMonitor(Monitor monitor) {
+		this.monitor = monitor;
+	}
+
+	public State getState() {
+		return state;
+	}
+
+	public void setState(State state) {
+		this.state = state;
+	}
 
 }
