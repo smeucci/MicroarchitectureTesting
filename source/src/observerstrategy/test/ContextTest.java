@@ -1,7 +1,6 @@
-package test;
+package observerstrategy.test;
 
 import static org.junit.Assert.*;
-
 import org.junit.Before;
 import org.junit.Test;
 
@@ -30,7 +29,7 @@ public class ContextTest {
 	 */
 	@Test
 	public void initialStateTest(){
-		assertEquals("Initial state not set to READY", State.READY, context.getState());
+		assertEquals("Initial state not set to READY", State.ON, context.getState());
 	}
 	
 	/**
@@ -39,7 +38,21 @@ public class ContextTest {
 	 * dello stato del soggetto rilevato dal monitor. In caso di staato READY
 	 * utilizzerò la strategia READY, etc.
 	 */
-	public void updateStrategyChanges(){
-		
-	}
+	
+
+	/**
+	 * Test: 3
+	 * Descrizione: la strategia da come risultato quello atteso
+	 
+	 */
+	
+	/**
+	 * Test: 4
+	 * Descrizione: al cambio di stato corrisponde una notifica agli observers
+	 */
+	
+	/**
+	 * Test: 5
+	 * Descrizione: la registrazione dell'observer va a buon fine
+	 */
 }
