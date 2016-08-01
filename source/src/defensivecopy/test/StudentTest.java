@@ -35,7 +35,7 @@ public class StudentTest {
 	
 	
 	/**
-	 * Testing getExams method
+	 * Testing getExams method. Return all the exams in the transcript associated to the student. Check if the attributes of the exams are correct
 	 * 
 	 */
 	@Test
@@ -44,19 +44,17 @@ public class StudentTest {
 		ArrayList<Exam> exams = student.getExams();
 		int i = 0;
 		for (Exam exam: exams) {
-			
 			assertEquals("Exam name not corresponding.", names[i], exam.getName());
 			assertEquals("Exam score not corresponding.", scores[i], exam.getScore());
 			assertEquals("Exam cfu not corresponding.", cfus[i], exam.getCFU());
 			i++;
-			
 		}
 		
 	}
 	
 	
 	/**
-	 * Testing addExam method
+	 * Testing addExam method. A new exam must be added to the array. The size of array must increase by one for each exam added.
 	 * 
 	 */
 	@Test
@@ -77,8 +75,8 @@ public class StudentTest {
 	
 	
 	/**
-	 * Testing getTrascript method
-	 * 
+	 * Testing getTrascript method. Return the transcript of the student. The size of the array of the returned transcript and the transcript
+	 * attribute of the student must be the same. They also should contain the same exams.
 	 */
 	@Test
 	public void getTranscriptTest() {
@@ -97,7 +95,7 @@ public class StudentTest {
 	
 	
 	/**
-	 * Test getAverage method
+	 * Test getAverage method. Compute the average score and check if it is equal to a predetermined value.
 	 * 
 	 */
 	@Test
@@ -108,4 +106,108 @@ public class StudentTest {
 
 	}
 	
+	
+	/**
+	 * Testing modifyExam method. Check if the exam attributed are modified accordingly to the argument passed.
+	 * 
+	 */
+	@Test
+	public void modifyExamTest() {
+		
+		assertEquals("Exam name not correct.", "Test1", student.getExams().get(0).getName());
+		assertEquals("Exam score not correct.", 30, student.getExams().get(0).getScore());
+		assertEquals("Exam cfu not correct.", 9, student.getExams().get(0).getCFU());
+		
+		student.getExams().get(0).setName("Test1Changed");
+		student.getExams().get(0).setScore(29);
+		student.getExams().get(0).setCFU(6);
+		
+		assertEquals("Exam name not correctly changed.", "Test1Changed", student.getExams().get(0).getName());
+		assertEquals("Exam score not correctly changed.", 29, student.getExams().get(0).getScore());
+		assertEquals("Exam cfu not correctly changed.", 6, student.getExams().get(0).getCFU());
+
+	}
+	
+	
+	/**
+	 * Testing removeExam method. The exam that has the name attribute the same as the argument passed, must be remove from the transcript
+	 * of the student. The size of the array of exams must decrease by one.
+	 */
+	@Test
+	public void removeExamTest() {
+		
+		assertEquals("Size of the exams array not correct.", 3, student.getExams().size());
+		
+		student.removeExam("Test1");
+		assertEquals("Size of the exams array not correctly updated.", 2, student.getExams().size());
+
+	}
+	
+	
+	/**
+	 * Testing removeAllExams method. The transcript of the student must be cleared of all the exams. The size of the array of exams must be 0.
+	 * 
+	 */
+	@Test
+	public void removeAllExamsTest() {
+		
+		assertEquals("Size of the exams array not correct.", 3, student.getExams().size());
+		
+		student.removeAllExams();;
+		assertEquals("Size of the exams array not correctly updated.", 0, student.getExams().size());
+		
+	}
+	
+	
+	/**
+	 * Testing getExam method. Return the object exam of the transcript of the student corresponding to the string name passed.
+	 * If an exam with that name is not present, return null.
+	 */
+	@Test
+	public void getExamTest() {
+		
+		assertEquals("Exam name not corresponding.", "Test1", student.getExam("Test1").getName());
+		assertEquals("Exam score not corresponding.", 30, student.getExam("Test1").getScore());
+		assertEquals("Exam cfu not corresponding.", 9, student.getExam("Test1").getCFU());
+		
+		assertEquals("Expected null.", null, student.getExam("Test5"));
+		
+	}
+	
+	
+	/**
+	 * Testing subscribe method and getDegreeCourse method. A student must be correctly subscribe to a course degree. 
+	 * The attribute course must be initialed correctly.
+	 */
+	@Test
+	public void subscribeTest() {
+		
+		assertEquals("Course not set correctly.", null, student.getDegreeCourse());
+		
+		DegreeCourse course = new DegreeCourse("CourseTest", "DegreeTest");
+		student.subscribe(course);
+		assertEquals("Not correctly subscribe to course degree.", course, student.getDegreeCourse());
+		
+	}
+	
+	
+	/**
+	 * Testing unsubscribe method and getDegreeCourse method. A student must be correctly unsubscribe from a course degree.
+	 * The attribute course must be set to null.
+	 */
+	@Test
+	public void unsubscribeTest() {
+		
+		assertEquals("Course not set correctly.", null, student.getDegreeCourse());
+		
+		DegreeCourse course = new DegreeCourse("CourseTest", "DegreeTest");
+		student.subscribe(course);
+		assertEquals("Not correctly subscribe to course degree.", course, student.getDegreeCourse());
+		
+		student.unsubscribe(course);
+		assertEquals("Not correctly unsubscribe to course degree.", null, student.getDegreeCourse());
+
+	}
+		
 }
+

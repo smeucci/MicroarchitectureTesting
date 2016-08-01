@@ -31,7 +31,7 @@ public class TranscriptTest {
 	
 	
 	/**
-	 * Testing getExams method
+	 * Testing getExams method. The array of exams must be returned.
 	 * 
 	 */
 	@Test
@@ -52,7 +52,7 @@ public class TranscriptTest {
 	
 	
 	/**
-	 * Testing addExam method
+	 * Testing addExam method. A new exam must be added to the transcript with the correct attributes.
 	 * 
 	 */
 	@Test
@@ -73,7 +73,7 @@ public class TranscriptTest {
 	
 	
 	/**
-	 * Testing constructors
+	 * Testing constructors. Check if the two ways of calling the constructor return the same object as a result.
 	 * 
 	 */
 	@Test
@@ -95,5 +95,73 @@ public class TranscriptTest {
 		}
 		
 	}
+	
+	
+	/**
+	 * Testing modifyExam method. The exam attributes must change accordingly to the arguments passed.
+	 * 
+	 */
+	@Test
+	public void modifyExamTest() {
+		
+		assertEquals("Exam name not correct.", "Test1", transcript.getExams().get(0).getName());
+		assertEquals("Exam score not correct.", 30, transcript.getExams().get(0).getScore());
+		assertEquals("Exam cfu not correct.", 9, transcript.getExams().get(0).getCFU());
+		
+		transcript.getExams().get(0).setName("Test1Changed");
+		transcript.getExams().get(0).setScore(29);
+		transcript.getExams().get(0).setCFU(6);
+		
+		assertEquals("Exam name not correctly changed.", "Test1Changed", transcript.getExams().get(0).getName());
+		assertEquals("Exam score not correctly changed.", 29, transcript.getExams().get(0).getScore());
+		assertEquals("Exam cfu not correctly changed.", 6, transcript.getExams().get(0).getCFU());
 
+	}
+	
+	
+	/**
+	 * Testing removeExam method. The exam that has the name attribute the same as the argument passed, must be remove from the transcript.
+	 * The size of the array of exams must decrease by one.
+	 */
+	@Test
+	public void removeExamTest() {
+		
+		assertEquals("Size of the exams array not correct.", 3, transcript.getExams().size());
+		
+		transcript.removeExam("Test1");
+		assertEquals("Size of the exams array not correctly updated.", 2, transcript.getExams().size());
+
+	}
+	
+	
+	/**
+	 * Testing removeAllExams method. The transcript must be cleared of all the exams. The size of the array of exams must be 0.
+	 * 
+	 */
+	@Test
+	public void removeAllExamsTest() {
+		
+		assertEquals("Size of the exams array not correct.", 3, transcript.getExams().size());
+		
+		transcript.removeAllExams();;
+		assertEquals("Size of the exams array not correctly updated.", 0, transcript.getExams().size());
+		
+	}
+	
+	
+	/**
+	 * Testing getExam method. Return the object exam of the transcript corresponding to the string name passed. If the exam with that name
+	 * is not present, return null.
+	 */
+	@Test
+	public void getExamTest() {
+		
+		assertEquals("Exam name not corresponding.", "Test1", transcript.getExam("Test1").getName());
+		assertEquals("Exam score not corresponding.", 30, transcript.getExam("Test1").getScore());
+		assertEquals("Exam cfu not corresponding.", 9, transcript.getExam("Test1").getCFU());
+		
+		assertEquals("Expected null.", null, transcript.getExam("Test5"));
+		
+	}
+	
 }

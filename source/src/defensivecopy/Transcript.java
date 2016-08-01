@@ -6,7 +6,7 @@ import java.util.*;
  */
 public class Transcript {
 
-	private final ArrayList<Exam> exams;
+	private ArrayList<Exam> exams;
 	
     public Transcript() {
     	this.exams = new ArrayList<Exam>();
@@ -28,6 +28,40 @@ public class Transcript {
 
     public void addExam(Exam e) {
         this.exams.add(new Exam(e));
+    }
+    
+    public void modifyExam(String name, int score, int cfu) {
+    	for (Exam e: this.exams) {
+    		if (e.getName().equals(name)) {
+    			e.setName(name);
+    			e.setScore(score);
+    			e.setCFU(cfu);
+    		}
+    	}
+    }
+    
+    public void removeExam(String name) {
+    	for (Iterator<Exam> it = this.exams.iterator(); it.hasNext();) {
+    		Exam e = it.next();
+    		if (e.getName().equals(name)) {
+    			it.remove();
+    		}
+    	}
+    }
+    
+    public void removeAllExams() {
+    	this.exams.clear();;
+    	
+    }
+    
+    public Exam getExam(String name) {
+    	for (Exam e: this.exams) {
+    		if (e.getName().equals(name)) {
+    			return e;
+    		}
+    	}
+    	
+    	return null;
     }
 
     public ArrayList<Exam> getExams() {

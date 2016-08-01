@@ -33,7 +33,7 @@ public class ExamTest {
 	
 	
 	/**
-	 * Testing getName method
+	 * Testing getName method. Must return the correct name attribute of the exam.
 	 * 
 	 */
 	@Test
@@ -43,7 +43,7 @@ public class ExamTest {
 	
 	
 	/**
-	 * Testing getScore method
+	 * Testing getScore method. Must return the correct score attribute of the exam.
 	 * 
 	 */
 	@Test
@@ -53,7 +53,7 @@ public class ExamTest {
 	
 	
 	/**
-	 * Testing getCFU method
+	 * Testing getCFU method. Must return the correct cfu attribute of the exam.
 	 * 
 	 */
 	@Test
@@ -63,7 +63,7 @@ public class ExamTest {
 	
 	
 	/**
-	 * Testing constructors
+	 * Testing constructors. Compare if calling the constructor in two different ways return the same exam as a result.
 	 * 
 	 */
 	@Test
@@ -80,7 +80,7 @@ public class ExamTest {
 	
 	
 	/**
-	 * Testing toString method
+	 * Testing toString method. Check if the output of the exam works correctly.
 	 * 
 	 */
 	@Test
@@ -89,5 +89,44 @@ public class ExamTest {
 		assertEquals("toStrig method not working properly.", "Test, score: 30, cfu: 9", exam.toString());
 		
 	}
-
+	
+	
+	/**
+	 * Testing setName method. The name attribute must change accordingly to the argument passed.
+	 */
+	@Test
+	public void setNameTest() {
+		
+		assertEquals("Exam name not correct.", "Test", exam.getName());
+		exam.setName("Changed");
+		assertEquals("Exam name not correctly changed.", "Changed", exam.getName());
+		
+	}
+	
+	
+	/**
+	 * Testing setScore method. The score attribute must change accordingly to the argument passed.
+	 */
+	@Test
+	public void setScoreTest() {
+		
+		assertEquals("Exam score not correct.", 30, exam.getScore());
+		exam.setScore(29);
+		assertEquals("Exam score not correctly changed.", 29, exam.getScore());
+		
+	}
+	
+	
+	/**
+	 * Testing setCFU method. The name attribute must change accordingly to the argument passed.
+	 */
+	@Test
+	public void setCFUTest() {
+		
+		assertEquals("Exam cfu not correct.", 9, exam.getCFU());
+		exam.setCFU(6);
+		assertEquals("Exam cfu not correctly changed.", 6, exam.getCFU());
+		
+	}
+	
 }

@@ -37,6 +37,13 @@ public class Main {
 		System.out.println(student.getExams().toString());
 		System.out.println("Average: " + student.getAverage(course));
 		
+		Exam e = student.getExam("Informatica Teorica");
+		System.out.println(e.toString());
+		
+		student.removeExam("Informatica Teorica");
+		System.out.println(student.getExams().toString());
+		System.out.println("Average: " + student.getAverage(course));
+		
 	}
 	
 }

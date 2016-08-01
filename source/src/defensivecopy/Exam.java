@@ -5,9 +5,9 @@ package defensivecopy;
  */
 public final class Exam {
 	
-	private final String name;
-	private final int score;
-	private final int cfu;
+	private String name;
+	private int score;
+	private int cfu;
 	
     public Exam(String name, int score, int cfu) {
     	this.name = name;
@@ -25,12 +25,24 @@ public final class Exam {
     	return this.name;
     }
     
+    public void setName(String name) {
+    	this.name = name;
+    }
+    
     public int getScore() {
         return this.score;
+    }
+    
+    public void setScore(int score) {
+    	this.score = score;
     }
 
     public int getCFU() {
         return this.cfu;
+    }
+    
+    public void setCFU(int cfu) {
+    	this.cfu = cfu;
     }
     
     public String toString() {
