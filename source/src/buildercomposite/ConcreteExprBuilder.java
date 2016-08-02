@@ -28,6 +28,12 @@ public class ConcreteExprBuilder extends ExprBuilder {
         or.add(b);
         return or;
     }
+    
+    public Component BuildNot(Component c) {
+    	Component not = new Not();
+    	not.add(c);
+    	return not;
+    }
 
     public Component BuildParenthesis(Component c) {
     	Component par = new Parenthesis();

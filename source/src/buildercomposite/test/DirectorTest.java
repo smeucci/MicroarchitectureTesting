@@ -55,11 +55,14 @@ public class DirectorTest {
     	Component varz = builder.BuildVariable("Z", true);
     	assertEquals("Variable does not evaluate correctly.", true, varz.evaluate());
     	
-    	Component or = builder.BuildOr(par, varz);
+    	Component not = builder.BuildNot(varz);
+    	assertEquals("NOT expression does not evaluate correctly.", false, not.evaluate());
+    	
+    	Component or = builder.BuildOr(par, not);
     	assertEquals("OR expression does not evaluate correctly.", true, or.evaluate());
     	
     	System.out.print("# "); or.draw(); System.out.println(" --> evaluation: " + or.evaluate());
-    	assertEquals("Draw and print not working properly.", "# (X:true AND Y:true) OR Z:true --> evaluation: true\n", output.toString());
+    	assertEquals("Draw and print not working properly.", "# (X:true AND Y:true) OR NOT(Z:true) --> evaluation: true\n", output.toString());
     	
 	}
 	
@@ -85,11 +88,14 @@ public class DirectorTest {
     	Component varz = builder.BuildVariable("Z", false);
     	assertEquals("Variable does not evaluate correctly.", false, varz.evaluate());
     	
-    	Component or = builder.BuildOr(par, varz);
+    	Component not = builder.BuildNot(varz);
+    	assertEquals("NOT expression does not evaluate correctly.", true, not.evaluate());
+    	
+    	Component or = builder.BuildOr(par, not);
     	assertEquals("OR expression does not evaluate correctly.", true, or.evaluate());
     	
     	System.out.print("# "); or.draw(); System.out.println(" --> evaluation: " + or.evaluate());
-    	assertEquals("Draw and print not working properly.", "# (X:true AND Y:true) OR Z:false --> evaluation: true\n", output.toString());
+    	assertEquals("Draw and print not working properly.", "# (X:true AND Y:true) OR NOT(Z:false) --> evaluation: true\n", output.toString());
     	
 	}
 	
@@ -115,11 +121,14 @@ public class DirectorTest {
     	Component varz = builder.BuildVariable("Z", true);
     	assertEquals("Variable does not evaluate correctly.", true, varz.evaluate());
     	
-    	Component or = builder.BuildOr(par, varz);
-    	assertEquals("OR expression does not evaluate correctly.", true, or.evaluate());
+    	Component not = builder.BuildNot(varz);
+    	assertEquals("NOT expression does not evaluate correctly.", false, not.evaluate());
+    	
+    	Component or = builder.BuildOr(par, not);
+    	assertEquals("OR expression does not evaluate correctly.", false, or.evaluate());
     	
     	System.out.print("# "); or.draw(); System.out.println(" --> evaluation: " + or.evaluate());
-    	assertEquals("Draw and print not working properly.", "# (X:true AND Y:false) OR Z:true --> evaluation: true\n", output.toString());
+    	assertEquals("Draw and print not working properly.", "# (X:true AND Y:false) OR NOT(Z:true) --> evaluation: false\n", output.toString());
     	
 	}
 	
@@ -145,11 +154,14 @@ public class DirectorTest {
     	Component varz = builder.BuildVariable("Z", false);
     	assertEquals("Variable does not evaluate correctly.", false, varz.evaluate());
     	
-    	Component or = builder.BuildOr(par, varz);
-    	assertEquals("OR expression does not evaluate correctly.", false, or.evaluate());
+    	Component not = builder.BuildNot(varz);
+    	assertEquals("NOT expression does not evaluate correctly.", true, not.evaluate());
+    	
+    	Component or = builder.BuildOr(par, not);
+    	assertEquals("OR expression does not evaluate correctly.", true, or.evaluate());
     	
     	System.out.print("# "); or.draw(); System.out.println(" --> evaluation: " + or.evaluate());
-    	assertEquals("Draw and print not working properly.", "# (X:true AND Y:false) OR Z:false --> evaluation: false\n", output.toString());
+    	assertEquals("Draw and print not working properly.", "# (X:true AND Y:false) OR NOT(Z:false) --> evaluation: true\n", output.toString());
     	
 	}
 	
@@ -175,11 +187,14 @@ public class DirectorTest {
     	Component varz = builder.BuildVariable("Z", true);
     	assertEquals("Variable does not evaluate correctly.", true, varz.evaluate());
     	
-    	Component or = builder.BuildOr(par, varz);
-    	assertEquals("OR expression does not evaluate correctly.", true, or.evaluate());
+    	Component not = builder.BuildNot(varz);
+    	assertEquals("NOT expression does not evaluate correctly.", false, not.evaluate());
+    	
+    	Component or = builder.BuildOr(par, not);
+    	assertEquals("OR expression does not evaluate correctly.", false, or.evaluate());
     	
     	System.out.print("# "); or.draw(); System.out.println(" --> evaluation: " + or.evaluate());
-    	assertEquals("Draw and print not working properly.", "# (X:false AND Y:true) OR Z:true --> evaluation: true\n", output.toString());
+    	assertEquals("Draw and print not working properly.", "# (X:false AND Y:true) OR NOT(Z:true) --> evaluation: false\n", output.toString());
     	
 	}
 	
@@ -205,11 +220,14 @@ public class DirectorTest {
     	Component varz = builder.BuildVariable("Z", false);
     	assertEquals("Variable does not evaluate correctly.", false, varz.evaluate());
     	
-    	Component or = builder.BuildOr(par, varz);
-    	assertEquals("OR expression does not evaluate correctly.", false, or.evaluate());
+    	Component not = builder.BuildNot(varz);
+    	assertEquals("NOT expression does not evaluate correctly.", true, not.evaluate());
+    	
+    	Component or = builder.BuildOr(par, not);
+    	assertEquals("OR expression does not evaluate correctly.", true, or.evaluate());
     	
     	System.out.print("# "); or.draw(); System.out.println(" --> evaluation: " + or.evaluate());
-    	assertEquals("Draw and print not working properly.", "# (X:false AND Y:true) OR Z:false --> evaluation: false\n", output.toString());
+    	assertEquals("Draw and print not working properly.", "# (X:false AND Y:true) OR NOT(Z:false) --> evaluation: true\n", output.toString());
     	
 	}
 	
@@ -235,11 +253,14 @@ public class DirectorTest {
     	Component varz = builder.BuildVariable("Z", true);
     	assertEquals("Variable does not evaluate correctly.", true, varz.evaluate());
     	
-    	Component or = builder.BuildOr(par, varz);
-    	assertEquals("OR expression does not evaluate correctly.", true, or.evaluate());
+    	Component not = builder.BuildNot(varz);
+    	assertEquals("NOT expression does not evaluate correctly.", false, not.evaluate());
+    	
+    	Component or = builder.BuildOr(par, not);
+    	assertEquals("OR expression does not evaluate correctly.", false, or.evaluate());
     	
     	System.out.print("# "); or.draw(); System.out.println(" --> evaluation: " + or.evaluate());
-    	assertEquals("Draw and print not working properly.", "# (X:false AND Y:false) OR Z:true --> evaluation: true\n", output.toString());
+    	assertEquals("Draw and print not working properly.", "# (X:false AND Y:false) OR NOT(Z:true) --> evaluation: false\n", output.toString());
     	
 	}
 	
@@ -265,11 +286,14 @@ public class DirectorTest {
     	Component varz = builder.BuildVariable("Z", false);
     	assertEquals("Variable does not evaluate correctly.", false, varz.evaluate());
     	
-    	Component or = builder.BuildOr(par, varz);
-    	assertEquals("OR expression does not evaluate correctly.", false, or.evaluate());
+    	Component not = builder.BuildNot(varz);
+    	assertEquals("NOT expression does not evaluate correctly.", true, not.evaluate());
+    	
+    	Component or = builder.BuildOr(par, not);
+    	assertEquals("OR expression does not evaluate correctly.", true, or.evaluate());
     	
     	System.out.print("# "); or.draw(); System.out.println(" --> evaluation: " + or.evaluate());
-    	assertEquals("Draw and print not working properly.", "# (X:false AND Y:false) OR Z:false --> evaluation: false\n", output.toString());
+    	assertEquals("Draw and print not working properly.", "# (X:false AND Y:false) OR NOT(Z:false) --> evaluation: true\n", output.toString());
     	
 	}
 	

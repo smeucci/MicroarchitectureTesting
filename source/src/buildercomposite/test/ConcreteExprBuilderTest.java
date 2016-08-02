@@ -103,6 +103,51 @@ public class ConcreteExprBuilderTest {
 	
 	
 	/**
+	 * Testing NOT expression.
+	 * 
+	 */
+	@Test
+	public void BuildNotTest() {
+		
+		Component x = builder.BuildVariable("X", true);
+		Component y = builder.BuildVariable("Y", true);
+		Component or = builder.BuildOr(x, y);
+		assertEquals("OR expression does not evaluate corretly.", true, or.evaluate());
+		
+		Component not = builder.BuildNot(or);
+		assertEquals("NOT expression does not evaluate corretly.", false, not.evaluate());
+		
+		// true and false -> true
+		x.setValue(true);
+		y.setValue(false);
+		or = builder.BuildOr(x, y);
+		assertEquals("OR expression does not evaluate corretly.", true, or.evaluate());
+		
+		not = builder.BuildNot(or);
+		assertEquals("NOT expression does not evaluate corretly.", false, not.evaluate());
+		
+		// false and true -> true
+		x.setValue(false);
+		y.setValue(true);
+		or = builder.BuildOr(x, y);
+		assertEquals("OR expression does not evaluate corretly.", true, or.evaluate());
+		
+		not = builder.BuildNot(or);
+		assertEquals("NOT expression does not evaluate corretly.", false, not.evaluate());
+		
+		// false and false -> false
+		x.setValue(false);
+		y.setValue(false);
+		or = builder.BuildOr(x, y);
+		assertEquals("OR expression does not evaluate corretly.", false, or.evaluate());
+		
+		not = builder.BuildNot(or);
+		assertEquals("NOT expression does not evaluate corretly.", true, not.evaluate());
+		
+	}
+	
+
+	/**
 	 * Testing Parenthesis
 	 * 
 	 */
@@ -124,6 +169,10 @@ public class ConcreteExprBuilderTest {
 		Component or = builder.BuildOr(x, y);
 		par = builder.BuildParenthesis(or);
 		assertEquals("Parenthesis does not evaluate corretly with OR expression", true, par.evaluate());
+		
+		Component not = builder.BuildNot(or);
+		par = builder.BuildParenthesis(not);
+		assertEquals("Parenthesis does not evaluate corretly with OR expression", false, par.evaluate());
 		
 	}
 	

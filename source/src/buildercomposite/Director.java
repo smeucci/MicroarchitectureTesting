@@ -18,7 +18,8 @@ public class Director {
     	Component and = builder.BuildAnd(varx, vary);
     	Component par = builder.BuildParenthesis(and);
     	Component varz = builder.BuildVariable("Z", z);
-    	Component or = builder.BuildOr(par, varz);
+    	Component not = builder.BuildNot(varz);
+    	Component or = builder.BuildOr(par, not);
     	
     	System.out.print("# ");
     	or.draw();
