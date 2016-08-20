@@ -22,7 +22,7 @@ public class Transcript {
     public Transcript(ArrayList<Exam> exams) {
     	this.exams = new ArrayList<Exam>();
     	for (Exam e: exams) {
-    		this.exams.add(new Exam(e.getName(), e.getScore(), e.getCFU()));
+    		this.exams.add(new Exam(e));
     	}
     }
 

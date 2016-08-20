@@ -1,4 +1,4 @@
-package defensivecopy.test;
+package defensivecopy.testold;
 
 import static org.junit.Assert.*;
 

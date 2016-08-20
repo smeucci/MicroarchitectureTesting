@@ -1,4 +1,4 @@
-package defensivecopy.test;
+package defensivecopy.testold;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;

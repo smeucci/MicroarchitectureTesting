@@ -8,10 +8,9 @@ public final class Exam {
 	private String name;
 	private int score;
 	private int cfu;
-	
-    public Exam(String name, int score, int cfu) {
+    
+    public Exam(String name, int cfu) {
     	this.name = name;
-    	this.score = score;
     	this.cfu = cfu;
     }
     
