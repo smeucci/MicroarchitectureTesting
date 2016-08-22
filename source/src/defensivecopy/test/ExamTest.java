@@ -1,4 +1,4 @@
-package defensivecopy.testold;
+package defensivecopy.test;
 
 import static org.junit.Assert.*;
 
@@ -18,11 +18,11 @@ public class ExamTest {
 	
 	@Before
 	public void setup() {
-		exam = new Exam("Test", 30, 9);
+		exam = new Exam("Test", 9);
 	}
 	
 	@Before
-	public void setuptStream() {
+	public void setupStream() {
 		System.setOut(new PrintStream(output));
 	}
 	
@@ -31,7 +31,7 @@ public class ExamTest {
 		System.setOut(null);
 	}
 	
-	
+		
 	/**
 	 * Testing getName method. Must return the correct name attribute of the exam.
 	 * 
@@ -48,7 +48,7 @@ public class ExamTest {
 	 */
 	@Test
 	public void getScoreTest() {
-		assertEquals("Exam score not correct.", 30, exam.getScore());
+		assertEquals("Exam score not correct.", -1, exam.getScore());
 	}
 	
 	
@@ -68,8 +68,7 @@ public class ExamTest {
 	 */
 	@Test
 	public void ConstructorsTest() {
-		
-		Exam exam1 = new Exam("Test", 30, 9);
+		Exam exam1 = new Exam("Test", 9);
 		Exam exam2 = new Exam(exam1);
 		
 		assertEquals("Exams names are not the same.", exam1.getName(), exam2.getName());
@@ -86,7 +85,7 @@ public class ExamTest {
 	@Test
 	public void toStringTest() {
 		
-		assertEquals("toStrig method not working properly.", "Test, score: 30, cfu: 9", exam.toString());
+		assertEquals("toStrig method not working properly.", "Test, score: -1, cfu: 9", exam.toString());
 		
 	}
 	
@@ -110,7 +109,7 @@ public class ExamTest {
 	@Test
 	public void setScoreTest() {
 		
-		assertEquals("Exam score not correct.", 30, exam.getScore());
+		assertEquals("Exam score not correct.", -1, exam.getScore());
 		exam.setScore(29);
 		assertEquals("Exam score not correctly changed.", 29, exam.getScore());
 		

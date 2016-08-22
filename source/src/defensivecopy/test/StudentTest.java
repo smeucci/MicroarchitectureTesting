@@ -1,31 +1,43 @@
-package defensivecopy.testold;
+package defensivecopy.test;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
 
 import java.util.ArrayList;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
 import defensivecopy.DegreeCourse;
 import defensivecopy.Exam;
 import defensivecopy.Student;
 import defensivecopy.Transcript;
+import defensivecopy.Professor;
 
 public class StudentTest {
 
 	private Student student;
 	private Transcript transcript;
-	private String[] names = {"Test1", "Test2", "Test3"};
-	private int[] scores = {30, 28, 27};
-	private int[] cfus = {9, 6, 9};
+	private String[] names = {"Test1", "Test2", "Test3", "Test4"};
+	private int[] scores = {30, 28, 27, -1};
+	private int[] cfus = {9, 6, 9, 6};
+	
+	@Mock
+	private Professor mockProfessor;
 	
 	@Before
 	public void setup() {
 		
+		MockitoAnnotations.initMocks(this);
+		
+		Exam e;
 		ArrayList<Exam> exams = new ArrayList<Exam>();
-		for (int i = 0; i < 3; i++) {
-			exams.add(new Exam(names[i], scores[i], cfus[i]));
+		for (int i = 0; i < 4; i++) {
+			e = new Exam(names[i], cfus[i]);
+			e.setScore(scores[i]);
+			exams.add(e);
 		}
 		
 		transcript = new Transcript(exams);
@@ -60,14 +72,18 @@ public class StudentTest {
 	@Test
 	public void addExamTest() {
 		
-		Exam exam = new Exam("Test4", 29, 6);
+		Exam exam = new Exam("Test5", 6);
+		
+        when(mockProfessor.getScore()).thenReturn(29);
+		exam.setScore(mockProfessor.getScore());
+		
 		student.addExam(exam);
 		
 		ArrayList<Exam> exams = student.getExams();
 		
-		assertEquals("Number of exams not correct.", 4, exams.size());
+		assertEquals("Number of exams not correct.", 5, exams.size());
 		
-		assertEquals("Exam name not corresponding.", "Test4", exams.get(exams.size() - 1).getName());
+		assertEquals("Exam name not corresponding.", "Test5", exams.get(exams.size() - 1).getName());
 		assertEquals("Exam score not corresponding.", 29, exams.get(exams.size() - 1).getScore());
 		assertEquals("Exam cfu not corresponding.", 6, exams.get(exams.size() - 1).getCFU());
 		
@@ -136,10 +152,10 @@ public class StudentTest {
 	@Test
 	public void removeExamTest() {
 		
-		assertEquals("Size of the exams array not correct.", 3, student.getExams().size());
+		assertEquals("Size of the exams array not correct.", 4, student.getExams().size());
 		
 		student.removeExam("Test1");
-		assertEquals("Size of the exams array not correctly updated.", 2, student.getExams().size());
+		assertEquals("Size of the exams array not correctly updated.", 3, student.getExams().size());
 
 	}
 	
@@ -151,7 +167,7 @@ public class StudentTest {
 	@Test
 	public void removeAllExamsTest() {
 		
-		assertEquals("Size of the exams array not correct.", 3, student.getExams().size());
+		assertEquals("Size of the exams array not correct.", 4, student.getExams().size());
 		
 		student.removeAllExams();;
 		assertEquals("Size of the exams array not correctly updated.", 0, student.getExams().size());
@@ -160,53 +176,25 @@ public class StudentTest {
 	
 	
 	/**
-	 * Testing getExam method. Return the object exam of the transcript of the student corresponding to the string name passed.
+	 * Testing getExam method. Return the object exam of the transcript of the student corresponding to the string name passed and change its score.
 	 * If an exam with that name is not present, return null.
 	 */
 	@Test
 	public void getExamTest() {
 		
-		assertEquals("Exam name not corresponding.", "Test1", student.getExam("Test1").getName());
-		assertEquals("Exam score not corresponding.", 30, student.getExam("Test1").getScore());
-		assertEquals("Exam cfu not corresponding.", 9, student.getExam("Test1").getCFU());
+		Exam exam = student.getExam("Test4");
+		
+		assertEquals("Exam name not corresponding.", "Test4", exam.getName());
+		assertEquals("Exam score not corresponding.", -1, exam.getScore());
+		assertEquals("Exam cfu not corresponding.", 6, exam.getCFU());
+		
+		when(mockProfessor.getScore()).thenReturn(25);
+		exam.setScore(mockProfessor.getScore());
+		
+		assertEquals("Exam score not corresponding.", 25, exam.getScore());
 		
 		assertEquals("Expected null.", null, student.getExam("Test5"));
 		
-	}
-	
-	
-	/**
-	 * Testing subscribe method and getDegreeCourse method. A student must be correctly subscribe to a course degree. 
-	 * The attribute course must be initialed correctly.
-	 */
-	@Test
-	public void subscribeTest() {
-		
-		assertEquals("Course not set correctly.", null, student.getDegreeCourse());
-		
-		DegreeCourse course = new DegreeCourse("CourseTest", "DegreeTest");
-		student.subscribe(course);
-		assertEquals("Not correctly subscribe to course degree.", course, student.getDegreeCourse());
-		
-	}
-	
-	
-	/**
-	 * Testing unsubscribe method and getDegreeCourse method. A student must be correctly unsubscribe from a course degree.
-	 * The attribute course must be set to null.
-	 */
-	@Test
-	public void unsubscribeTest() {
-		
-		assertEquals("Course not set correctly.", null, student.getDegreeCourse());
-		
-		DegreeCourse course = new DegreeCourse("CourseTest", "DegreeTest");
-		student.subscribe(course);
-		assertEquals("Not correctly subscribe to course degree.", course, student.getDegreeCourse());
-		
-		student.unsubscribe(course);
-		assertEquals("Not correctly unsubscribe to course degree.", null, student.getDegreeCourse());
-
 	}
 		
 }

@@ -1,4 +1,4 @@
-package defensivecopy.testold;
+package defensivecopy.test;
 
 import static org.junit.Assert.*;
 
@@ -20,9 +20,12 @@ public class TranscriptTest {
 	@Before
 	public void setup() {
 		
+		Exam e;
 		ArrayList<Exam> exams = new ArrayList<Exam>();
 		for (int i = 0; i < 3; i++) {
-			exams.add(new Exam(names[i], scores[i], cfus[i]));
+			e = new Exam(names[i], cfus[i]);
+			e.setScore(scores[i]);
+			exams.add(e);
 		}
 		
 		transcript = new Transcript(exams);
@@ -58,7 +61,8 @@ public class TranscriptTest {
 	@Test
 	public void addExamTest() {
 		
-		Exam exam = new Exam("Test4", 29, 6);
+		Exam exam = new Exam("Test4", 6);
+		exam.setScore(29);
 		transcript.addExam(exam);
 		
 		ArrayList<Exam> exams = transcript.getExams();

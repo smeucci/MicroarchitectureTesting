@@ -11,6 +11,7 @@ public final class Exam {
     
     public Exam(String name, int cfu) {
     	this.name = name;
+    	this.score = -1;
     	this.cfu = cfu;
     }
     

@@ -1,4 +1,4 @@
-package defensivecopy.testold;
+package defensivecopy.test;
 
 import static org.junit.Assert.*;
 
@@ -80,9 +80,12 @@ public class DegreeCourseTest {
 		
 		float average = (float) 28.375;
 		
+		Exam e;
 		ArrayList<Exam> exams = new ArrayList<Exam>();
 		for (int i = 0; i < 3; i++) {
-			exams.add(new Exam(names[i], scores[i], cfus[i]));
+			e = new Exam(names[i], cfus[i]);
+			e.setScore(scores[i]);
+			exams.add(e);
 		}
 		
 		transcript = new Transcript(exams);
@@ -90,75 +93,6 @@ public class DegreeCourseTest {
 		
 		assertEquals("Average score not corresponding.", (double) student.getAverage(course), (double) course.getAverage(transcript), (double) 0.001);
 		assertEquals("Average score not correct.", (double) average, (double) course.getAverage(transcript), (double) 0.001);
-		
-	}
-	
-	
-	/**
-	 * Testing registerStudent method. Passing a student object, the student must be added to the array of students of the degree course.
-	 * The size of the array must increase by one.
-	 */
-	@Test
-	public void registerStudentTest() {
-		
-		ArrayList<Exam> exams = new ArrayList<Exam>();
-		for (int i = 0; i < 3; i++) {
-			exams.add(new Exam(names[i], scores[i], cfus[i]));
-		}
-		
-		transcript = new Transcript(exams);
-		student = new Student(transcript);
-		
-		assertEquals("Size of the array of students not correct.", 0, course.getStudents().size());
-
-		course.registerStudent(student);
-		assertEquals("Student object not corresponding.", true, course.getStudents().contains(student));
-		assertEquals("Size of the array of students not correct.", 1, course.getStudents().size());
-		
-	}
-	
-	
-	/**
-	 * Testing getStudents method. The size of the returned array must be as expected.
-	 * 
-	 */
-	@Test
-	public void getStudentsTest() {
-		Transcript transcript = new Transcript();
-		Student student = new Student(transcript);
-		
-		assertEquals("Size of the array of students not correct.", 0, course.getStudents().size());
-		
-		course.registerStudent(student);
-		assertEquals("Size of the array of students not correct.", 1, course.getStudents().size());
-		
-	}
-	
-	
-	/**
-	 * Testing unregisterStudent method. The passed student must be remove from the array of student. The size of the array must decrease by one.
-	 * 
-	 */
-	@Test
-	public void unregisterStudentTest() {
-		
-		ArrayList<Exam> exams = new ArrayList<Exam>();
-		for (int i = 0; i < 3; i++) {
-			exams.add(new Exam(names[i], scores[i], cfus[i]));
-		}
-		
-		transcript = new Transcript(exams);
-		student = new Student(transcript);
-		
-		assertEquals("Size of the array of students not correct.", 0, course.getStudents().size());
-
-		course.registerStudent(student);
-		assertEquals("Student object not corresponding.", true, course.getStudents().contains(student));
-		assertEquals("Size of the array of students not correct.", 1, course.getStudents().size());
-		
-		course.unregisterStudent(student);
-		assertEquals("Student object not corresponding.", false, course.getStudents().contains(student));
-		assertEquals("Size of the array of students not correct.", 0, course.getStudents().size());	
 		
 	}
 	

@@ -1,7 +1,7 @@
 package defensivecopy;
 
-public abstract class Professor {
+public interface Professor {
 	
-	public abstract int getScore();
+	public int getScore();
 	
 }
