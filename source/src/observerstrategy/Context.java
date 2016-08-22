@@ -37,7 +37,8 @@ public class Context implements Observer {
 			break;
 		default:
 			break;
-		}  
+		}
+        contextInterface();
     }
 
     public State contextInterface() {

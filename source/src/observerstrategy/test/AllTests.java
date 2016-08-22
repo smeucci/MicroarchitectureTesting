@@ -7,7 +7,8 @@ import org.junit.runners.Suite.SuiteClasses;
 @RunWith(Suite.class)
 @SuiteClasses({ 
 	ContextTest.class,
-	SubjectTest.class
+	SubjectTest.class,
+	ThermostatTest.class
 })
 public class AllTests {
 
