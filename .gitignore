@@ -2,5 +2,8 @@
 /bin/
 
 .project
-
+.settings
 .classpath
+/target/
+/src/
+pom.xml

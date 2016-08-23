@@ -1,6 +1,7 @@
 package buildercomposite.test;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -8,17 +9,24 @@ import java.io.PrintStream;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
 import buildercomposite.Component;
 import buildercomposite.ConcreteExprBuilder;
+import buildercomposite.VariableInitialiser;
 
 public class DirectorTest {
 
 	private ConcreteExprBuilder builder;
 	private final ByteArrayOutputStream output = new ByteArrayOutputStream();
 	
+	@Mock
+	VariableInitialiser mockInit;
+	
 	@Before
 	public void setup() throws Exception {
+		MockitoAnnotations.initMocks(this);
 		builder = new ConcreteExprBuilder();
 	}
 	
@@ -40,10 +48,12 @@ public class DirectorTest {
 	@Test
 	public void ConstructExprTest1() {
 		
-		Component varx = builder.BuildVariable("X", true);
+		when(mockInit.initVariable()).thenReturn(true);
+		Component varx = builder.BuildVariable("X", mockInit.initVariable());
 		assertEquals("Variable does not evaluate correctly.", true, varx.evaluate());
 		
-    	Component vary = builder.BuildVariable("Y", true);
+		when(mockInit.initVariable()).thenReturn(true);
+    	Component vary = builder.BuildVariable("Y", mockInit.initVariable());
     	assertEquals("Variable does not evaluate correctly.", true, vary.evaluate());
     	
     	Component and = builder.BuildAnd(varx, vary);
@@ -51,8 +61,9 @@ public class DirectorTest {
     	
     	Component par = builder.BuildParenthesis(and);
     	assertEquals("Parenthesis does not evaluate correctly.", true, par.evaluate());
-    	    	
-    	Component varz = builder.BuildVariable("Z", true);
+    	
+    	when(mockInit.initVariable()).thenReturn(true);
+    	Component varz = builder.BuildVariable("Z", mockInit.initVariable());
     	assertEquals("Variable does not evaluate correctly.", true, varz.evaluate());
     	
     	Component not = builder.BuildNot(varz);
@@ -73,10 +84,12 @@ public class DirectorTest {
 	@Test
 	public void ConstructExprTest2() {
 		
-		Component varx = builder.BuildVariable("X", true);
+		when(mockInit.initVariable()).thenReturn(true);
+		Component varx = builder.BuildVariable("X", mockInit.initVariable());
 		assertEquals("Variable does not evaluate correctly.", true, varx.evaluate());
 		
-    	Component vary = builder.BuildVariable("Y", true);
+		when(mockInit.initVariable()).thenReturn(true);
+    	Component vary = builder.BuildVariable("Y", mockInit.initVariable());
     	assertEquals("Variable does not evaluate correctly.", true, vary.evaluate());
     	
     	Component and = builder.BuildAnd(varx, vary);
@@ -84,8 +97,9 @@ public class DirectorTest {
     	
     	Component par = builder.BuildParenthesis(and);
     	assertEquals("Parenthesis does not evaluate correctly.", true, par.evaluate());
-    	    	
-    	Component varz = builder.BuildVariable("Z", false);
+    	
+    	when(mockInit.initVariable()).thenReturn(false);
+    	Component varz = builder.BuildVariable("Z", mockInit.initVariable());
     	assertEquals("Variable does not evaluate correctly.", false, varz.evaluate());
     	
     	Component not = builder.BuildNot(varz);
@@ -106,10 +120,12 @@ public class DirectorTest {
 	@Test
 	public void ConstructExprTest3() {
 		
-		Component varx = builder.BuildVariable("X", true);
+		when(mockInit.initVariable()).thenReturn(true);
+		Component varx = builder.BuildVariable("X", mockInit.initVariable());
 		assertEquals("Variable does not evaluate correctly.", true, varx.evaluate());
 		
-    	Component vary = builder.BuildVariable("Y", false);
+		when(mockInit.initVariable()).thenReturn(false);
+    	Component vary = builder.BuildVariable("Y", mockInit.initVariable());
     	assertEquals("Variable does not evaluate correctly.", false, vary.evaluate());
     	
     	Component and = builder.BuildAnd(varx, vary);
@@ -117,8 +133,9 @@ public class DirectorTest {
     	
     	Component par = builder.BuildParenthesis(and);
     	assertEquals("Parenthesis does not evaluate correctly.", false, par.evaluate());
-    	    	
-    	Component varz = builder.BuildVariable("Z", true);
+    	
+    	when(mockInit.initVariable()).thenReturn(true);
+    	Component varz = builder.BuildVariable("Z", mockInit.initVariable());
     	assertEquals("Variable does not evaluate correctly.", true, varz.evaluate());
     	
     	Component not = builder.BuildNot(varz);
@@ -139,10 +156,12 @@ public class DirectorTest {
 	@Test
 	public void ConstructExprTest4() {
 		
-		Component varx = builder.BuildVariable("X", true);
+		when(mockInit.initVariable()).thenReturn(true);
+		Component varx = builder.BuildVariable("X", mockInit.initVariable());
 		assertEquals("Variable does not evaluate correctly.", true, varx.evaluate());
 		
-    	Component vary = builder.BuildVariable("Y", false);
+		when(mockInit.initVariable()).thenReturn(false);
+    	Component vary = builder.BuildVariable("Y", mockInit.initVariable());
     	assertEquals("Variable does not evaluate correctly.", false, vary.evaluate());
     	
     	Component and = builder.BuildAnd(varx, vary);
@@ -150,8 +169,9 @@ public class DirectorTest {
     	
     	Component par = builder.BuildParenthesis(and);
     	assertEquals("Parenthesis does not evaluate correctly.", false, par.evaluate());
-    	    	
-    	Component varz = builder.BuildVariable("Z", false);
+    	
+    	when(mockInit.initVariable()).thenReturn(false);
+    	Component varz = builder.BuildVariable("Z", mockInit.initVariable());
     	assertEquals("Variable does not evaluate correctly.", false, varz.evaluate());
     	
     	Component not = builder.BuildNot(varz);
@@ -172,10 +192,12 @@ public class DirectorTest {
 	@Test
 	public void ConstructExprTest5() {
 		
-		Component varx = builder.BuildVariable("X", false);
+		when(mockInit.initVariable()).thenReturn(false);
+		Component varx = builder.BuildVariable("X", mockInit.initVariable());
 		assertEquals("Variable does not evaluate correctly.", false, varx.evaluate());
 		
-    	Component vary = builder.BuildVariable("Y", true);
+		when(mockInit.initVariable()).thenReturn(true);
+    	Component vary = builder.BuildVariable("Y", mockInit.initVariable());
     	assertEquals("Variable does not evaluate correctly.", true, vary.evaluate());
     	
     	Component and = builder.BuildAnd(varx, vary);
@@ -183,8 +205,9 @@ public class DirectorTest {
     	
     	Component par = builder.BuildParenthesis(and);
     	assertEquals("Parenthesis does not evaluate correctly.", false, par.evaluate());
-    	    	
-    	Component varz = builder.BuildVariable("Z", true);
+    	
+    	when(mockInit.initVariable()).thenReturn(true);
+    	Component varz = builder.BuildVariable("Z", mockInit.initVariable());
     	assertEquals("Variable does not evaluate correctly.", true, varz.evaluate());
     	
     	Component not = builder.BuildNot(varz);
@@ -204,11 +227,13 @@ public class DirectorTest {
 	 */
 	@Test
 	public void ConstructExprTest6() {
-		
-		Component varx = builder.BuildVariable("X", false);
+
+		when(mockInit.initVariable()).thenReturn(false);
+		Component varx = builder.BuildVariable("X", mockInit.initVariable());
 		assertEquals("Variable does not evaluate correctly.", false, varx.evaluate());
 		
-    	Component vary = builder.BuildVariable("Y", true);
+		when(mockInit.initVariable()).thenReturn(true);
+    	Component vary = builder.BuildVariable("Y", mockInit.initVariable());
     	assertEquals("Variable does not evaluate correctly.", true, vary.evaluate());
     	
     	Component and = builder.BuildAnd(varx, vary);
@@ -216,8 +241,9 @@ public class DirectorTest {
     	
     	Component par = builder.BuildParenthesis(and);
     	assertEquals("Parenthesis does not evaluate correctly.", false, par.evaluate());
-    	    	
-    	Component varz = builder.BuildVariable("Z", false);
+    	
+    	when(mockInit.initVariable()).thenReturn(false);
+    	Component varz = builder.BuildVariable("Z", mockInit.initVariable());
     	assertEquals("Variable does not evaluate correctly.", false, varz.evaluate());
     	
     	Component not = builder.BuildNot(varz);
@@ -238,10 +264,12 @@ public class DirectorTest {
 	@Test
 	public void ConstructExprTest7() {
 		
-		Component varx = builder.BuildVariable("X", false);
+		when(mockInit.initVariable()).thenReturn(false);
+		Component varx = builder.BuildVariable("X", mockInit.initVariable());
 		assertEquals("Variable does not evaluate correctly.", false, varx.evaluate());
 		
-    	Component vary = builder.BuildVariable("Y", false);
+		when(mockInit.initVariable()).thenReturn(false);
+    	Component vary = builder.BuildVariable("Y", mockInit.initVariable());
     	assertEquals("Variable does not evaluate correctly.", false, vary.evaluate());
     	
     	Component and = builder.BuildAnd(varx, vary);
@@ -249,8 +277,9 @@ public class DirectorTest {
     	
     	Component par = builder.BuildParenthesis(and);
     	assertEquals("Parenthesis does not evaluate correctly.", false, par.evaluate());
-    	    	
-    	Component varz = builder.BuildVariable("Z", true);
+    	
+    	when(mockInit.initVariable()).thenReturn(true);
+    	Component varz = builder.BuildVariable("Z", mockInit.initVariable());
     	assertEquals("Variable does not evaluate correctly.", true, varz.evaluate());
     	
     	Component not = builder.BuildNot(varz);
@@ -271,10 +300,12 @@ public class DirectorTest {
 	@Test
 	public void ConstructExprTest8() {
 		
-		Component varx = builder.BuildVariable("X", false);
+		when(mockInit.initVariable()).thenReturn(false);
+		Component varx = builder.BuildVariable("X", mockInit.initVariable());
 		assertEquals("Variable does not evaluate correctly.", false, varx.evaluate());
 		
-    	Component vary = builder.BuildVariable("Y", false);
+		when(mockInit.initVariable()).thenReturn(false);
+    	Component vary = builder.BuildVariable("Y", mockInit.initVariable());
     	assertEquals("Variable does not evaluate correctly.", false, vary.evaluate());
     	
     	Component and = builder.BuildAnd(varx, vary);
@@ -282,8 +313,9 @@ public class DirectorTest {
     	
     	Component par = builder.BuildParenthesis(and);
     	assertEquals("Parenthesis does not evaluate correctly.", false, par.evaluate());
-    	    	
-    	Component varz = builder.BuildVariable("Z", false);
+    	
+    	when(mockInit.initVariable()).thenReturn(false);
+    	Component varz = builder.BuildVariable("Z", mockInit.initVariable());
     	assertEquals("Variable does not evaluate correctly.", false, varz.evaluate());
     	
     	Component not = builder.BuildNot(varz);
