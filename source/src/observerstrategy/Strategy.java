@@ -7,5 +7,6 @@ public interface Strategy {
     /**
      * Strategy to be implemented in concrete objects
      */
-    public State algorithmInterface();
+    public State work();
+    
 }

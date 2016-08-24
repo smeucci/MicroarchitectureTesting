@@ -10,33 +10,33 @@ import static org.mockito.Mockito.*;
 import java.util.*;
 
 import observerstrategy.Context;
-import observerstrategy.Monitor;
+import observerstrategy.Device;
 import observerstrategy.State;
 import observerstrategy.Strategy;
 import observerstrategy.StrategyReady;
 import observerstrategy.Subject;
 import observerstrategy.TemperatureSensor;
-import observerstrategy.Thermostat;
+import observerstrategy.Controller;
 
 public class ThermostatTest {
 	
 	@Mock
 	private TemperatureSensor sensor;
-	private Thermostat thermostat;
+	private Controller thermostat;
 	
 	@Before
 	public void setup() {
 		MockitoAnnotations.initMocks(this);
 		Strategy strategy = StrategyReady.getInstance();
 		Context context;
-		ArrayList<Monitor> objects = new ArrayList<Monitor>();
-		Monitor m1 = new Monitor();
+		ArrayList<Device> objects = new ArrayList<Device>();
+		Device m1 = new Device();
 		context = new Context(strategy, m1);
 		m1.attachObserver(context);
-		Monitor m2 = new Monitor();
+		Device m2 = new Device();
 		context = new Context(strategy, m2);
 		m2.attachObserver(context);
-		Monitor m3 = new Monitor();
+		Device m3 = new Device();
 		context = new Context(strategy, m3);
 		m3.attachObserver(context);
 				
@@ -44,7 +44,7 @@ public class ThermostatTest {
 		objects.add(m2);
 		objects.add(m3);
 		
-		thermostat = new Thermostat(objects);
+		thermostat = new Controller(objects);
 		thermostat.setSensor(sensor);
 	}
 	
@@ -69,7 +69,7 @@ public class ThermostatTest {
 	 */
 	@Test
 	public void initialStateTest(){
-		for(Monitor subject: thermostat.getObjects()){
+		for(Device subject: thermostat.getObjects()){
 			assertEquals("Initial state of the object not READY", State.READY, subject.getState());
 		}
 	}

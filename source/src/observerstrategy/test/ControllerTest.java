@@ -4,23 +4,23 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import observerstrategy.Context;
-import observerstrategy.Monitor;
+import observerstrategy.Controller;
+import observerstrategy.Device;
 import observerstrategy.State;
 import observerstrategy.Strategy;
 import observerstrategy.StrategyReady;
 
-public class ContextTest {
+public class ControllerTest {
 	
-	private Context context;
-	private Monitor monitor;
+	private Controller context;
+	private Device monitor;
 
 	@Before
 	public void setup() throws Exception {
-		monitor = new Monitor();
+		monitor = new Device();
 		Strategy s;
 		s = StrategyReady.getInstance();
-		context = new Context(s, monitor);
+		context = new Controller(s, monitor);
 	}
 
 	/**
@@ -42,12 +42,12 @@ public class ContextTest {
 	@Test
 	public void updateChangesState(){
 		monitor.attachObserver(context);
-		monitor.setState(State.READY);
-		assertEquals("Ready strategy not called proprerly", State.READY, context.contextInterface());
-		monitor.setState(State.ON);
-		assertEquals("On strategy not called proprerly", State.ON, context.contextInterface());
-		monitor.setState(State.OFF);
-		assertEquals("Off strategy not called proprerly", State.OFF, context.contextInterface());
+		//monitor.setState(State.READY);
+		assertEquals("Ready strategy not called proprerly", State.READY, context.getState());
+		//monitor.setState(State.ON);
+		assertEquals("On strategy not called proprerly", State.ON, context.getState());
+		//monitor.setState(State.OFF);
+		assertEquals("Off strategy not called proprerly", State.OFF, context.getState());
 	}
 
 }

@@ -5,22 +5,21 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import observerstrategy.Context;
-import observerstrategy.Monitor;
+import observerstrategy.Controller;
+import observerstrategy.Device;
 import observerstrategy.Strategy;
 import observerstrategy.StrategyReady;
 
 public class SubjectTest {
 
-	private Context context;
-	private Monitor monitor;
+	private Controller context;
+	private Device monitor;
 
 	@Before
 	public void setup() throws Exception {
-		monitor = new Monitor();
-		Strategy s;
-		s = StrategyReady.getInstance();
-		context = new Context(s, monitor);
+		monitor = new Device();
+		Strategy s = StrategyReady.getInstance();
+		context = new Controller(s, monitor);
 	}
 	
 	/**

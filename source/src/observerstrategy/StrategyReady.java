@@ -21,7 +21,7 @@ public class StrategyReady implements Strategy {
     /**
      * Print algorithm
      */
-    public State algorithmInterface() {
+    public State work() {
     	System.out.println("Ready Strategy");
     	return State.READY;
     }
