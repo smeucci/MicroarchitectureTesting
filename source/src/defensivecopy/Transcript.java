@@ -30,16 +30,6 @@ public class Transcript {
         this.exams.add(new Exam(e));
     }
     
-    public void modifyExam(String name, int score, int cfu) {
-    	for (Exam e: this.exams) {
-    		if (e.getName().equals(name)) {
-    			e.setName(name);
-    			e.setScore(score);
-    			e.setCFU(cfu);
-    		}
-    	}
-    }
-    
     public void removeExam(String name) {
     	for (Iterator<Exam> it = this.exams.iterator(); it.hasNext();) {
     		Exam e = it.next();

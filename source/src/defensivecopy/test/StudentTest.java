@@ -74,8 +74,9 @@ public class StudentTest {
 		
 		Exam exam = new Exam("Test5", 6);
 		
-        when(mockProfessor.getScore()).thenReturn(29);
-		exam.setScore(mockProfessor.getScore());
+		exam.setProfessor(mockProfessor);
+        when(exam.getProfessor().getScore()).thenReturn(29);
+		exam.setScore(exam.getProfessor().getScore());
 		
 		student.addExam(exam);
 		
@@ -188,8 +189,9 @@ public class StudentTest {
 		assertEquals("Exam score not corresponding.", -1, exam.getScore());
 		assertEquals("Exam cfu not corresponding.", 6, exam.getCFU());
 		
-		when(mockProfessor.getScore()).thenReturn(25);
-		exam.setScore(mockProfessor.getScore());
+		exam.setProfessor(mockProfessor);
+        when(exam.getProfessor().getScore()).thenReturn(25);
+		exam.setScore(exam.getProfessor().getScore());
 		
 		assertEquals("Exam score not corresponding.", 25, exam.getScore());
 		

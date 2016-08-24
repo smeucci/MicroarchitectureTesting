@@ -102,7 +102,7 @@ public class TranscriptTest {
 	
 	
 	/**
-	 * Testing modifyExam method. The exam attributes must change accordingly to the arguments passed.
+	 * The exam attributes must change accordingly to the arguments passed.
 	 * 
 	 */
 	@Test

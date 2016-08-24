@@ -8,6 +8,7 @@ public final class Exam {
 	private String name;
 	private int score;
 	private int cfu;
+	Professor professor;
     
     public Exam(String name, int cfu) {
     	this.name = name;
@@ -43,6 +44,14 @@ public final class Exam {
     
     public void setCFU(int cfu) {
     	this.cfu = cfu;
+    }
+    
+    public Professor getProfessor() {
+    	return this.professor;
+    }
+    
+    public void setProfessor(Professor professor) {
+    	this.professor = professor;
     }
     
     public String toString() {
