@@ -8,7 +8,7 @@ public final class Exam {
 	private String name;
 	private int score;
 	private int cfu;
-	Professor professor;
+	private Professor professor;
     
     public Exam(String name, int cfu) {
     	this.name = name;
