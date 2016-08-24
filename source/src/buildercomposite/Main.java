@@ -4,13 +4,13 @@ public class Main {
    
 	public static void main(String args[]) {
 		
-		ConcreteExprBuilder builder = new ConcreteExprBuilder();
+		ExprBuilder builder = new ConcreteExprBuilder();
 		Director director = new Director(builder);
-		director.ConstructExpr(true, false, false);
+		director.ConstructExpr(true, false, true);
 		
-		String[] ops = {"var", "var", "and", "par", "var", "or", "var", "and"};
-		Boolean[] bs = {true, true, true, false};
-		director.ConstructGenericExpr(ops, bs);
+//		String[] ops = {"var", "var", "and", "par", "var", "or", "var", "and"};
+//		Boolean[] bs = {true, true, true, false};
+//		director.ConstructGenericExpr(ops, bs);
 	
 	}
 	

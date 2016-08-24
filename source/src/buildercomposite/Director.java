@@ -6,12 +6,21 @@ package buildercomposite;
 public class Director {
 
 	private ExprBuilder builder;
+	private ValueInitialiser init;
 	
     public Director(ExprBuilder builder) {
     	this.builder = builder;
     }
     
-    public void ConstructExpr(Boolean x, Boolean y, Boolean z) {
+    public ValueInitialiser getValueInitialiser() {
+    	return this.init;
+    }
+    
+    public void setValueInitialiser(ValueInitialiser init) {
+    	this.init = init;
+    }
+    
+    public Boolean ConstructExpr(Boolean x, Boolean y, Boolean z) {
         
     	Component varx = builder.BuildVariable("X", x);
     	Component vary = builder.BuildVariable("Y", y);
@@ -24,6 +33,8 @@ public class Director {
     	System.out.print("# ");
     	or.draw();
     	System.out.println(" --> evaluation: " + or.evaluate());
+    	
+    	return or.evaluate();
     	
     }
     

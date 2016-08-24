@@ -10,14 +10,14 @@ import org.mockito.MockitoAnnotations;
 
 import buildercomposite.Component;
 import buildercomposite.ConcreteExprBuilder;
-import buildercomposite.VariableInitialiser;
+import buildercomposite.ValueInitialiser;
 
 public class ConcreteExprBuilderTest {
 
 	private ConcreteExprBuilder builder;
 	
 	@Mock
-	VariableInitialiser mockInit;
+	ValueInitialiser mockInit;
 	
 	@Before
 	public void setup() throws Exception {
@@ -33,11 +33,11 @@ public class ConcreteExprBuilderTest {
 	@Test
 	public void BuildVariableTest() {
 		
-		when(mockInit.initVariable()).thenReturn(true);
-		Component x = builder.BuildVariable("X", mockInit.initVariable());
+		when(mockInit.initValue()).thenReturn(true);
+		Component x = builder.BuildVariable("X", mockInit.initValue());
 		
-		when(mockInit.initVariable()).thenReturn(false);
-		Component y = builder.BuildVariable("Y", mockInit.initVariable());
+		when(mockInit.initValue()).thenReturn(false);
+		Component y = builder.BuildVariable("Y", mockInit.initValue());
 		
 		assertEquals("X value does not evaluate corretcly.", true, x.evaluate());
 		assertEquals("Y value does not evaluate correctly.", false, y.evaluate());
@@ -53,41 +53,41 @@ public class ConcreteExprBuilderTest {
 	public void BuildAndTest() {
 		
 		// true and true -> true
-		when(mockInit.initVariable()).thenReturn(true);
-		Component x = builder.BuildVariable("X", mockInit.initVariable());
+		when(mockInit.initValue()).thenReturn(true);
+		Component x = builder.BuildVariable("X", mockInit.initValue());
 		
-		when(mockInit.initVariable()).thenReturn(true);
-		Component y = builder.BuildVariable("Y", mockInit.initVariable());
+		when(mockInit.initValue()).thenReturn(true);
+		Component y = builder.BuildVariable("Y", mockInit.initValue());
 		
 		Component and = builder.BuildAnd(x, y);
 		assertEquals("AND expression does not evaluate corretly.", true, and.evaluate());
 		
 		// true and false -> false
-		when(mockInit.initVariable()).thenReturn(true);
-		x.setValue(mockInit.initVariable());
+		when(mockInit.initValue()).thenReturn(true);
+		x.setValue(mockInit.initValue());
 		
-		when(mockInit.initVariable()).thenReturn(false);
-		y.setValue(mockInit.initVariable());
+		when(mockInit.initValue()).thenReturn(false);
+		y.setValue(mockInit.initValue());
 		
 		and = builder.BuildAnd(x, y);
 		assertEquals("AND expression does not evaluate corretly.", false, and.evaluate());
 		
 		// false and true -> false
-		when(mockInit.initVariable()).thenReturn(false);
-		x.setValue(mockInit.initVariable());
+		when(mockInit.initValue()).thenReturn(false);
+		x.setValue(mockInit.initValue());
 		
-		when(mockInit.initVariable()).thenReturn(true);
-		y.setValue(mockInit.initVariable());
+		when(mockInit.initValue()).thenReturn(true);
+		y.setValue(mockInit.initValue());
 		
 		and = builder.BuildAnd(x, y);
 		assertEquals("AND expression does not evaluate corretly.", false, and.evaluate());
 		
 		// false and false -> false
-		when(mockInit.initVariable()).thenReturn(false);
-		x.setValue(mockInit.initVariable());
+		when(mockInit.initValue()).thenReturn(false);
+		x.setValue(mockInit.initValue());
 		
-		when(mockInit.initVariable()).thenReturn(false);
-		y.setValue(mockInit.initVariable());
+		when(mockInit.initValue()).thenReturn(false);
+		y.setValue(mockInit.initValue());
 		
 		and = builder.BuildAnd(x, y);
 		assertEquals("AND expression does not evaluate corretly.", false, and.evaluate());
@@ -103,41 +103,41 @@ public class ConcreteExprBuilderTest {
 	public void BuildOrTest() {
 		
 		// true and true -> true
-		when(mockInit.initVariable()).thenReturn(true);
-		Component x = builder.BuildVariable("X", mockInit.initVariable());
+		when(mockInit.initValue()).thenReturn(true);
+		Component x = builder.BuildVariable("X", mockInit.initValue());
 		
-		when(mockInit.initVariable()).thenReturn(true);
-		Component y = builder.BuildVariable("Y", mockInit.initVariable());
+		when(mockInit.initValue()).thenReturn(true);
+		Component y = builder.BuildVariable("Y", mockInit.initValue());
 		
 		Component or = builder.BuildOr(x, y);
 		assertEquals("OR expression does not evaluate corretly.", true, or.evaluate());
 		
 		// true and false -> true
-		when(mockInit.initVariable()).thenReturn(true);
-		x.setValue(mockInit.initVariable());
+		when(mockInit.initValue()).thenReturn(true);
+		x.setValue(mockInit.initValue());
 		
-		when(mockInit.initVariable()).thenReturn(false);
-		y.setValue(mockInit.initVariable());
+		when(mockInit.initValue()).thenReturn(false);
+		y.setValue(mockInit.initValue());
 		
 		or = builder.BuildOr(x, y);
 		assertEquals("OR expression does not evaluate corretly.", true, or.evaluate());
 		
 		// false and true -> true
-		when(mockInit.initVariable()).thenReturn(false);
-		x.setValue(mockInit.initVariable());
+		when(mockInit.initValue()).thenReturn(false);
+		x.setValue(mockInit.initValue());
 		
-		when(mockInit.initVariable()).thenReturn(true);
-		y.setValue(mockInit.initVariable());
+		when(mockInit.initValue()).thenReturn(true);
+		y.setValue(mockInit.initValue());
 		
 		or = builder.BuildOr(x, y);
 		assertEquals("OR expression does not evaluate corretly.", true, or.evaluate());
 		
 		// false and false -> false
-		when(mockInit.initVariable()).thenReturn(false);
-		x.setValue(mockInit.initVariable());
+		when(mockInit.initValue()).thenReturn(false);
+		x.setValue(mockInit.initValue());
 		
-		when(mockInit.initVariable()).thenReturn(false);
-		y.setValue(mockInit.initVariable());
+		when(mockInit.initValue()).thenReturn(false);
+		y.setValue(mockInit.initValue());
 		
 		or = builder.BuildOr(x, y);
 		assertEquals("OR expression does not evaluate corretly.", false, or.evaluate());
@@ -152,11 +152,11 @@ public class ConcreteExprBuilderTest {
 	@Test
 	public void BuildNotTest() {
 		
-		when(mockInit.initVariable()).thenReturn(true);
-		Component x = builder.BuildVariable("X", mockInit.initVariable());
+		when(mockInit.initValue()).thenReturn(true);
+		Component x = builder.BuildVariable("X", mockInit.initValue());
 		
-		when(mockInit.initVariable()).thenReturn(true);
-		Component y = builder.BuildVariable("Y", mockInit.initVariable());
+		when(mockInit.initValue()).thenReturn(true);
+		Component y = builder.BuildVariable("Y", mockInit.initValue());
 		
 		Component or = builder.BuildOr(x, y);
 		assertEquals("OR expression does not evaluate corretly.", true, or.evaluate());
@@ -165,11 +165,11 @@ public class ConcreteExprBuilderTest {
 		assertEquals("NOT expression does not evaluate corretly.", false, not.evaluate());
 		
 		// true and false -> true
-		when(mockInit.initVariable()).thenReturn(true);
-		x.setValue(mockInit.initVariable());
+		when(mockInit.initValue()).thenReturn(true);
+		x.setValue(mockInit.initValue());
 		
-		when(mockInit.initVariable()).thenReturn(false);
-		y.setValue(mockInit.initVariable());
+		when(mockInit.initValue()).thenReturn(false);
+		y.setValue(mockInit.initValue());
 		or = builder.BuildOr(x, y);
 		assertEquals("OR expression does not evaluate corretly.", true, or.evaluate());
 		
@@ -177,11 +177,11 @@ public class ConcreteExprBuilderTest {
 		assertEquals("NOT expression does not evaluate corretly.", false, not.evaluate());
 		
 		// false and true -> true
-		when(mockInit.initVariable()).thenReturn(false);
-		x.setValue(mockInit.initVariable());
+		when(mockInit.initValue()).thenReturn(false);
+		x.setValue(mockInit.initValue());
 		
-		when(mockInit.initVariable()).thenReturn(true);
-		y.setValue(mockInit.initVariable());
+		when(mockInit.initValue()).thenReturn(true);
+		y.setValue(mockInit.initValue());
 		
 		or = builder.BuildOr(x, y);
 		assertEquals("OR expression does not evaluate corretly.", true, or.evaluate());
@@ -190,11 +190,11 @@ public class ConcreteExprBuilderTest {
 		assertEquals("NOT expression does not evaluate corretly.", false, not.evaluate());
 		
 		// false and false -> false
-		when(mockInit.initVariable()).thenReturn(false);
-		x.setValue(mockInit.initVariable());
+		when(mockInit.initValue()).thenReturn(false);
+		x.setValue(mockInit.initValue());
 		
-		when(mockInit.initVariable()).thenReturn(false);
-		y.setValue(mockInit.initVariable());
+		when(mockInit.initValue()).thenReturn(false);
+		y.setValue(mockInit.initValue());
 		
 		or = builder.BuildOr(x, y);
 		assertEquals("OR expression does not evaluate corretly.", false, or.evaluate());
@@ -212,14 +212,14 @@ public class ConcreteExprBuilderTest {
 	@Test
 	public void BuildParenthesisTest() {
 		
-		when(mockInit.initVariable()).thenReturn(true);
-		Component x = builder.BuildVariable("X", mockInit.initVariable());
+		when(mockInit.initValue()).thenReturn(true);
+		Component x = builder.BuildVariable("X", mockInit.initValue());
 		
 		Component par = builder.BuildParenthesis(x);
 		assertEquals("Parenthesis does not evaluate correctly with variable.", true, par.evaluate());
 		
-		when(mockInit.initVariable()).thenReturn(false);
-		Component y = builder.BuildVariable("Y", mockInit.initVariable());
+		when(mockInit.initValue()).thenReturn(false);
+		Component y = builder.BuildVariable("Y", mockInit.initValue());
 		par = builder.BuildParenthesis(y);
 		assertEquals("Parenthesis does not evaluate correctly with variable.", false, par.evaluate());
 		
