@@ -125,28 +125,6 @@ public class StudentTest {
 	
 	
 	/**
-	 * Testing modifyExam method. Check if the exam attributed are modified accordingly to the argument passed.
-	 * 
-	 */
-	@Test
-	public void modifyExamTest() {
-		
-		assertEquals("Exam name not correct.", "Test1", student.getExams().get(0).getName());
-		assertEquals("Exam score not correct.", 30, student.getExams().get(0).getScore());
-		assertEquals("Exam cfu not correct.", 9, student.getExams().get(0).getCFU());
-		
-		student.getExams().get(0).setName("Test1Changed");
-		student.getExams().get(0).setScore(29);
-		student.getExams().get(0).setCFU(6);
-		
-		assertEquals("Exam name not correctly changed.", "Test1Changed", student.getExams().get(0).getName());
-		assertEquals("Exam score not correctly changed.", 29, student.getExams().get(0).getScore());
-		assertEquals("Exam cfu not correctly changed.", 6, student.getExams().get(0).getCFU());
-
-	}
-	
-	
-	/**
 	 * Testing removeExam method. The exam that has the name attribute the same as the argument passed, must be remove from the transcript
 	 * of the student. The size of the array of exams must decrease by one.
 	 */

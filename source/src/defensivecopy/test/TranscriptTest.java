@@ -133,7 +133,7 @@ public class TranscriptTest {
 	
 	/**
 	 * Testing getExam method. Return the object exam of the transcript corresponding to the string name passed. If the exam with that name
-	 * is not present, return null.
+	 * does not exist, return null.
 	 */
 	@Test
 	public void getExamTest() {

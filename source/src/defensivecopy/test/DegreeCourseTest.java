@@ -72,8 +72,8 @@ public class DegreeCourseTest {
 	
 	
 	/**
-	 * Testing getAverage method. Compute the average of all the exam contains in the passed transcript. Check if is equal to a predetermined
-	 * value. Also check if getAverage method of DegreeCourse and of Student returned the same value.
+	 * Testing getAverage method. Compute the average of all the exam contained in the passed transcript. Check if it is equal to a predetermined
+	 * value. Also check if getAverage method of DegreeCourse and of Student return the same value.
 	 */
 	@Test
 	public void getAverageTest() {

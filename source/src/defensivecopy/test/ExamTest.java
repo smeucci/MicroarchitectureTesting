@@ -119,7 +119,7 @@ public class ExamTest {
 	
 	
 	/**
-	 * Testing setCFU method. The name attribute must change accordingly to the argument passed.
+	 * Testing setCFU method. The CFU attribute must change accordingly to the argument passed.
 	 */
 	@Test
 	public void setCFUTest() {
