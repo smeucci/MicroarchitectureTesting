@@ -54,6 +54,17 @@ public final class Exam {
     	this.professor = professor;
     }
     
+    public void giveScore() {
+    	
+    	int score = this.professor.giveScore();
+    	if (score >= 18 && score <= 30) {
+    		setScore(score);
+    	} else {
+    		System.out.println("Score out of bound.");
+    	}
+    	
+    }
+    
     public String toString() {
     	return this.name + ", score: " + this.score + ", cfu: " + this.cfu;
     }

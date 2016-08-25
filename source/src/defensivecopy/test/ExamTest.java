@@ -1,6 +1,7 @@
 package defensivecopy.test;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -10,6 +11,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import defensivecopy.Exam;
+import defensivecopy.Professor;
 
 public class ExamTest {
 
@@ -127,5 +129,30 @@ public class ExamTest {
 		assertEquals("Exam cfu not correctly changed.", 6, exam.getCFU());
 		
 	}
+	
+	
+	/**
+	 * Testing Professor methods. Getter, setter and giveScore methods.
+	 * 
+	 */
+	@Test
+	public void ProfessorTest(){
+		
+		Professor mockProfessor = mock(Professor.class);
+		
+		exam.setProfessor(mockProfessor);
+		assertEquals("Professor not corresponding.", mockProfessor, exam.getProfessor());
+		
+		when(exam.getProfessor().giveScore()).thenReturn(40);
+		exam.giveScore();
+		assertEquals("Output message not correct.", "Score out of bound.\n", output.toString());
+		assertEquals("Exam's score not correct.", -1, exam.getScore());
+		
+		when(exam.getProfessor().giveScore()).thenReturn(29);
+		exam.giveScore();
+		assertEquals("Exam's score not correct.", 29, exam.getScore());
+		
+	}
+	
 	
 }

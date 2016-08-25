@@ -75,8 +75,8 @@ public class StudentTest {
 		Exam exam = new Exam("Test5", 6);
 		
 		exam.setProfessor(mockProfessor);
-        when(exam.getProfessor().getScore()).thenReturn(29);
-		exam.setScore(exam.getProfessor().getScore());
+        when(exam.getProfessor().giveScore()).thenReturn(29);
+		exam.giveScore();
 		
 		student.addExam(exam);
 		
@@ -178,7 +178,7 @@ public class StudentTest {
 	
 	/**
 	 * Testing getExam method. Return the object exam of the transcript of the student corresponding to the string name passed and change its score.
-	 * If an exam with that name is not present, return null.
+	 * If an exam with that name does not exist, return null.
 	 */
 	@Test
 	public void getExamTest() {
@@ -190,9 +190,8 @@ public class StudentTest {
 		assertEquals("Exam cfu not corresponding.", 6, exam.getCFU());
 		
 		exam.setProfessor(mockProfessor);
-        when(exam.getProfessor().getScore()).thenReturn(25);
-		exam.setScore(exam.getProfessor().getScore());
-		
+        when(exam.getProfessor().giveScore()).thenReturn(25);
+		exam.giveScore();
 		assertEquals("Exam score not corresponding.", 25, exam.getScore());
 		
 		assertEquals("Expected null.", null, student.getExam("Test5"));

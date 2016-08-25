@@ -102,28 +102,6 @@ public class TranscriptTest {
 	
 	
 	/**
-	 * The exam attributes must change accordingly to the arguments passed.
-	 * 
-	 */
-	@Test
-	public void modifyExamTest() {
-		
-		assertEquals("Exam name not correct.", "Test1", transcript.getExams().get(0).getName());
-		assertEquals("Exam score not correct.", 30, transcript.getExams().get(0).getScore());
-		assertEquals("Exam cfu not correct.", 9, transcript.getExams().get(0).getCFU());
-		
-		transcript.getExams().get(0).setName("Test1Changed");
-		transcript.getExams().get(0).setScore(29);
-		transcript.getExams().get(0).setCFU(6);
-		
-		assertEquals("Exam name not correctly changed.", "Test1Changed", transcript.getExams().get(0).getName());
-		assertEquals("Exam score not correctly changed.", 29, transcript.getExams().get(0).getScore());
-		assertEquals("Exam cfu not correctly changed.", 6, transcript.getExams().get(0).getCFU());
-
-	}
-	
-	
-	/**
 	 * Testing removeExam method. The exam that has the name attribute the same as the argument passed, must be remove from the transcript.
 	 * The size of the array of exams must decrease by one.
 	 */

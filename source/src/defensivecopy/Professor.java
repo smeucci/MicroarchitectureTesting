@@ -2,6 +2,6 @@ package defensivecopy;
 
 public interface Professor {
 	
-	public int getScore();
+	public int giveScore();
 	
 }
