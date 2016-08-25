@@ -19,9 +19,26 @@ public class Device extends Subject {
     /**
      * Get and set state
      */
-    public int getTemperature() {
+    public int updateTemperature() {
     	temperature = sensor.getTemperature();
     	notifyObservers();
         return temperature;
     }
+    
+    public int getTemperature(){
+    	return temperature;
+    }
+
+	public TemperatureSensor getSensor() {
+		return sensor;
+	}
+
+	public void setSensor(TemperatureSensor sensor) {
+		this.sensor = sensor;
+	}
+
+	public void setTemperature(int temperature) {
+		this.temperature = temperature;
+	}
+
 }

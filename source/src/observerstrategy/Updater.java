@@ -22,7 +22,7 @@ public class Updater {
 	 */
 	public void update(){
 		for(Device device: devices){
-			device.getTemperature();
+			device.updateTemperature();
 		}
 	}
 

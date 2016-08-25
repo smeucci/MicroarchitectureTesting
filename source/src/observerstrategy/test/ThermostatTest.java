@@ -9,43 +9,41 @@ import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
 import java.util.*;
 
-import observerstrategy.Context;
 import observerstrategy.Device;
 import observerstrategy.State;
 import observerstrategy.Strategy;
 import observerstrategy.StrategyReady;
 import observerstrategy.Subject;
 import observerstrategy.TemperatureSensor;
+import observerstrategy.Thermostat;
+import observerstrategy.Updater;
 import observerstrategy.Controller;
 
 public class ThermostatTest {
 	
 	@Mock
 	private TemperatureSensor sensor;
-	private Controller thermostat;
+	private Controller controller;
+	private Device device;
+	private Thermostat thermostat;
+	private Updater updater;
 	
 	@Before
 	public void setup() {
 		MockitoAnnotations.initMocks(this);
 		Strategy strategy = StrategyReady.getInstance();
-		Context context;
-		ArrayList<Device> objects = new ArrayList<Device>();
-		Device m1 = new Device();
-		context = new Context(strategy, m1);
-		m1.attachObserver(context);
-		Device m2 = new Device();
-		context = new Context(strategy, m2);
-		m2.attachObserver(context);
-		Device m3 = new Device();
-		context = new Context(strategy, m3);
-		m3.attachObserver(context);
-				
-		objects.add(m1);
-		objects.add(m2);
-		objects.add(m3);
+		device = new Device();
+		device.setSensor(sensor);
+		controller = new Controller(strategy, device);
+		device.attachObserver(controller);
 		
-		thermostat = new Controller(objects);
-		thermostat.setSensor(sensor);
+		thermostat = new Thermostat();
+		thermostat.addObject(controller);
+		//Initialize thermostat to 20 degrees
+		thermostat.setTemperature(20);
+		
+		//Initialize updater for time passing simulation
+		updater = new Updater(device);		
 	}
 	
 	/**
@@ -54,13 +52,15 @@ public class ThermostatTest {
 	 */
 	@Test
 	public void stateChangeTest(){
-		thermostat.setTemperature(20);
 		when(sensor.getTemperature()).thenReturn(20);
-		thermostat.update();
+		updater.update();
+		assertEquals("State of the controller must be READY when temperature is equal to the set one", State.READY, controller.getState());
 		when(sensor.getTemperature()).thenReturn(18);
-		thermostat.update();
+		updater.update();
+		assertEquals("State of the controller must be ON when temperature is equal to the set one", State.ON, controller.getState());
 		when(sensor.getTemperature()).thenReturn(22);
-		thermostat.update();
+		updater.update();
+		assertEquals("State of the controller must be OFF when temperature is equal to the set one", State.OFF, controller.getState());		
 	}
 	
 	/**
@@ -69,9 +69,7 @@ public class ThermostatTest {
 	 */
 	@Test
 	public void initialStateTest(){
-		for(Device subject: thermostat.getObjects()){
-			assertEquals("Initial state of the object not READY", State.READY, subject.getState());
-		}
+		assertEquals("Initial state of the controller is not READY", State.READY, controller.getState());
 	}
 
 }

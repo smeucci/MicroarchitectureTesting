@@ -13,6 +13,13 @@ public class Thermostat {
 			controller.setTemperature(temperature);
 		}
 	}
+	
+	public void addObject(Controller obj){
+		if(objects == null){
+			objects = new ArrayList<Controller>();
+		}
+		objects.add(obj);
+	}
 
 	public ArrayList<Controller> getObjects() {
 		return objects;
