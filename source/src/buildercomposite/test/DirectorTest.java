@@ -43,7 +43,7 @@ public class DirectorTest {
 	
 	
 	/**
-	 * Testing the construction of a generic boolean expression, with step by step evaluation check (true, true, true)
+	 * Testing the construction of a generic boolean expression (true, true, true)
 	 * 
 	 */
 	@Test
@@ -64,7 +64,7 @@ public class DirectorTest {
 	}
 	
 	/**
-	 * Testing the construction of a generic boolean expression, with step by step evaluation check (true, true, false)
+	 * Testing the construction of a generic boolean expression (true, true, false)
 	 * 
 	 */
 	@Test
@@ -85,7 +85,7 @@ public class DirectorTest {
 	}
 	
 	/**
-	 * Testing the construction of a generic boolean expression, with step by step evaluation check (true, false, true)
+	 * Testing the construction of a generic boolean expression (true, false, true)
 	 * 
 	 */
 	@Test
@@ -106,7 +106,7 @@ public class DirectorTest {
 	}
 	
 	/**
-	 * Testing the construction of a generic boolean expression, with step by step evaluation check (true, false, false)
+	 * Testing the construction of a generic boolean expression (true, false, false)
 	 * 
 	 */
 	@Test
@@ -127,7 +127,7 @@ public class DirectorTest {
 	}
 	
 	/**
-	 * Testing the construction of a generic boolean expression, with step by step evaluation check (false, true, true)
+	 * Testing the construction of a generic boolean expression (false, true, true)
 	 * 
 	 */
 	@Test
@@ -148,7 +148,7 @@ public class DirectorTest {
 	}
 	
 	/**
-	 * Testing the construction of a generic boolean expression, with step by step evaluation check (false, true, false)
+	 * Testing the construction of a generic boolean expression (false, true, false)
 	 * 
 	 */
 	@Test
@@ -169,7 +169,7 @@ public class DirectorTest {
 	}
 	
 	/**
-	 * Testing the construction of a generic boolean expression, with step by step evaluation check (false, false, true)
+	 * Testing the construction of a generic boolean expression (false, false, true)
 	 * 
 	 */
 	@Test
@@ -190,7 +190,7 @@ public class DirectorTest {
 	}
 	
 	/**
-	 * Testing the construction of a generic boolean expression, with step by step evaluation check (false, false, false)
+	 * Testing the construction of a generic boolean expression (false, false, false)
 	 * 
 	 */
 	@Test
