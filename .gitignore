@@ -8,3 +8,10 @@
 /target/
 /.settings/*
 pom.xml
+docs/report/report.synctex.gz
+
+docs/report/report.pdf
+
+docs/report/report.log
+
+docs/report/report.aux

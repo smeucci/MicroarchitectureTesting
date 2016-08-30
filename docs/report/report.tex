@@ -1,0 +1,60 @@
+\documentclass[10pt,twocolumn,letterpaper]{article}
+\usepackage[italian]{babel} 
+\usepackage[utf8]{inputenc} 
+\usepackage{cvpr}
+\usepackage{times}
+\usepackage{epsfig}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{url}
+
+% Include other packages here, before hyperref.
+
+% If you comment hyperref and then uncomment it, you should delete
+% egpaper.aux before re-running latex.  (Or just hit 'q' on the first latex
+% run, let it finish, and you should be clear).
+%\usepackage[pagebackref=true,breaklinks=true,letterpaper=true,colorlinks,bookmarks=false]{hyperref}
+
+\cvprfinalcopy % *** Uncomment this line for the final submission
+
+\def\cvprPaperID{****} % *** Enter the CVPR Paper ID here
+\def\httilde{\mbox{\tt\raisebox{-.5ex}{\symbol{126}}}}
+
+% Pages are numbered in submission mode, and unnumbered in camera-ready
+\ifcvprfinal\pagestyle{empty}\fi
+\begin{document}
+
+%%%%%%%%% TITLE
+\title{Testing di microarchitetture Java con JUnit e Mockito}
+
+\author{Lorenzo Cioni\\
+{\tt\small lore.cioni@gmail.com}
+\and
+Saverio Meucci\\
+{\tt\small s.meucci91@gmail.com}
+}
+
+\maketitle
+\thispagestyle{empty}
+
+%%%%%%%%% ABSTRACT
+\input{abstract}
+
+%-------------------------------------------------------------------------
+\input{introduction}
+\input{architectures}
+\input{faultmodels}
+\input{abstraction} %diagramma delle classi UML
+\input{coverage}
+\input{testing}
+\input{conclusions}
+
+%-------------------------------------------------------------------------
+
+{\small
+\bibliographystyle{ieee}
+\bibliography{egbib}
+}
+
+\end{document}
