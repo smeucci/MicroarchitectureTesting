@@ -41,6 +41,10 @@ public class Controller implements Observer {
 		}	
 		strategy.work();
 	}
+	
+	public void timeUpdate(){
+		device.updateTemperature();
+	}
 
 
 	public Device getObject() {
