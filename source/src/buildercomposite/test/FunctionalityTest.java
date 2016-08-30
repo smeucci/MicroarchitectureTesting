@@ -37,8 +37,8 @@ public class FunctionalityTest {
 	
 	
 	/*
+	 * Number: 1
 	 * Title: Adding a component to a leaf.
-	 * 
 	 * Description: Variable extends the abstract class Component. When the add method of the Variable class 
 	 * is called, an exception should be thrown.
 	 * 
@@ -52,16 +52,13 @@ public class FunctionalityTest {
 		
 		// ADD method for variable
 		varx.add(vary);
-		
-		
-		
-		
+
 	}
 	
 	
 	/*
+	 * Number: 2
 	 * Title: Adding a component to a composite.
-	 * 
 	 * Description: Composite extends the abstract class Component. When the add method of the classes that extends the Composite class, the passed component(s)
 	 * should be added to the children components list and no exception should be thrown.
 	 * 
@@ -83,8 +80,8 @@ public class FunctionalityTest {
 	
 	
 	/*
+	 * Number: 3
 	 * Title: Concrete Expression Builder.
-	 * 
 	 * Description: When an expression (Variable, And, Or, Not, Parenthesis) is built, it must have the expected attributes.
 	 * 
 	 */
@@ -126,8 +123,8 @@ public class FunctionalityTest {
 	
 	
 	/*
+	 * Number: 4
 	 * Title: Expression Evaluation.
-	 * 
 	 * Description: A generic boolean expression must be correctly evaluated for all possible variables values. The values are
 	 * initialised thanks to the mocked class ValueInitialiser and its method initValue().
 	 * 

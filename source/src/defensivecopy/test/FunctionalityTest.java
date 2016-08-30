@@ -10,12 +10,21 @@ import java.util.ArrayList;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
 import defensivecopy.*;
 
 public class FunctionalityTest {
 
+	@Mock Professor mockProfessor;
+	
 	public final ByteArrayOutputStream output = new ByteArrayOutputStream();
+	
+	@Before
+	public void setup() throws Exception {
+		MockitoAnnotations.initMocks(this);
+	}
 	
 	@Before
 	public void setupStream() {
@@ -29,8 +38,8 @@ public class FunctionalityTest {
 	
 	
 	/*
+	 * Number: 1
 	 * Title: Exam creation
-	 * 
 	 * Description: An exam is created with the desired name, the desired CFU and a default score of -1.
 	 * 
 	 */
@@ -47,8 +56,8 @@ public class FunctionalityTest {
 	
 	
 	/*
+	 * Number: 2
 	 * Title: Exam insertion in transcript
-	 * 
 	 * Description: An exam is correctly inserted in a Trascript. The insertion is made using a defensive copy
 	 * wrt the Exam object. The size of the transcript should increase by 1.
 	 * 
@@ -63,7 +72,6 @@ public class FunctionalityTest {
 		assertEquals("The size of the transcript should be 0.", 0, transcript.getExams().size());
 		
 		Exam exam = new Exam("Test Exam", 9);
-		Professor mockProfessor = mock(Professor.class);
 		exam.setProfessor(mockProfessor);
 		transcript.addExam(exam);
 		assertEquals("The size of the transcript should be 1.", 1, transcript.getExams().size());
@@ -118,8 +126,8 @@ public class FunctionalityTest {
 	
 	
 	/*
+	 * Number: 3
 	 * Title: Student-Transcript association.
-	 * 
 	 * Description: A transcript can be associated to a Student. The association is made using a defensive copy wrt to the transcript.
 	 * 
 	 */
@@ -145,8 +153,8 @@ public class FunctionalityTest {
 	
 	
 	/*
+	 * Number: 4
 	 * Title: Score assignment by Professor
-	 * 
 	 * Description: A Professor should be associated to an exam. When a Professor set an exam score, the score must be in a prefixed
 	 * range (from 18 to 30) and the exam score must change accordingly. Professor is a mocked class.
 	 * 
@@ -159,7 +167,6 @@ public class FunctionalityTest {
 		 Exam exam1 = new Exam("Test 1", 6);
 		 Exam exam2 = new Exam("Test 2", 6);
 		 
-		 Professor mockProfessor = mock(Professor.class);
 		 exam1.setProfessor(mockProfessor);
 		 exam2.setProfessor(mockProfessor);
 		 
@@ -169,11 +176,11 @@ public class FunctionalityTest {
 		 assertEquals("Exam score not initialised correctly.", -1, student.getExam("Test 1").getScore());
 		 assertEquals("Exam score not initialised correctly.", -1, student.getExam("Test 2").getScore());
 		 
-		 when(student.getExam("Test 1").getProfessor().giveScore()).thenReturn(30);
+		 when(mockProfessor.giveScore()).thenReturn(30);
 		 student.getExam("Test 1").giveScore();
 		 assertEquals("Exam score not assigned correctly by Professor.", 30, student.getExam("Test 1").getScore());
 		 
-		 when(student.getExam("Test 2").getProfessor().giveScore()).thenReturn(50);
+		 when(mockProfessor.giveScore()).thenReturn(50);
 		 student.getExam("Test 2").giveScore();
 		 assertEquals("Exam score not assigned correctly by Professor.", -1, student.getExam("Test 2").getScore());
 		 assertEquals("Should output an error message for score out of the prefixed range.", "Score out of range.\n", output.toString());
@@ -182,8 +189,8 @@ public class FunctionalityTest {
 	 
 	 
 	 /*
+	  * Number: 5
 	  * Title: Average score evaluation.
-	  * 
 	  * Description: When the score average is requested by the student, a copy of the transcript is passed to a DegreeCourse for the
 	  * evaluation, implementing a defensive copy. All the exams with a score different from -1 must be considered
 	  */
@@ -212,9 +219,9 @@ public class FunctionalityTest {
 	}
 	
 	
-	/**
+	/*
+	 * Number: 6 
 	 * Title: Exam removal.
-	 * 
 	 * Description: An exam can be removed from a transcript. Therefore it shoudl not be considered in the average score evaluation.
 	 * 
 	 */
@@ -255,8 +262,8 @@ public class FunctionalityTest {
 	
 	
 	/*
+	 * Number: 7
 	 * Title: Clear Transcript.
-	 * 
 	 * Description: All the included exams are removed from the transcript.
 	 * 
 	 */
