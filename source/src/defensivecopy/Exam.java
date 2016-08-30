@@ -20,6 +20,7 @@ public final class Exam {
         this.name = e.getName();
         this.score = e.getScore();
         this.cfu = e.getCFU();
+        this.professor = e.getProfessor();
     }
 
     public String getName() {
@@ -60,7 +61,7 @@ public final class Exam {
     	if (score >= 18 && score <= 30) {
     		setScore(score);
     	} else {
-    		System.out.println("Score out of bound.");
+    		System.out.println("Score out of range.");
     	}
     	
     }
