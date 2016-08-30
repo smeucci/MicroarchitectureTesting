@@ -154,42 +154,55 @@ public class DefensiveCopyTest {
 	
 	/*
 	 * Number: 4
-	 * Title: Score assignment by Professor
-	 * Description: A Professor should be associated to an exam. When a Professor set an exam score, the score must be in a prefixed
-	 * range (from 18 to 30) and the exam score must change accordingly. Professor is a mocked class.
+	 * Title: Good Score assignment by Professor
+	 * Description: A Professor should be associated to an exam. When a Professor set an exam score that is in the prefixed
+	 * range (from 18 to 30), the exam score must change accordingly. Professor is a mocked class.
 	 * 
 	 */
 	 @Test
-	 public void ScoreAssignmentProfessorTest() {
-		 
+	 public void GoodScoreAssignmentProfessorTest() throws OutOfRangeScoreException {
 		 
 		 Student student = new Student(new Transcript());
-		 Exam exam1 = new Exam("Test 1", 6);
-		 Exam exam2 = new Exam("Test 2", 6);
+		 Exam exam = new Exam("Test 1", 6);
+		 exam.setProfessor(mockProfessor);
 		 
-		 exam1.setProfessor(mockProfessor);
-		 exam2.setProfessor(mockProfessor);
-		 
-		 student.addExam(exam1);
-		 student.addExam(exam2);
+		 student.addExam(exam);
 		 
 		 assertEquals("Exam score not initialised correctly.", -1, student.getExam("Test 1").getScore());
-		 assertEquals("Exam score not initialised correctly.", -1, student.getExam("Test 2").getScore());
 		 
 		 when(mockProfessor.giveScore()).thenReturn(30);
 		 student.getExam("Test 1").giveScore();
 		 assertEquals("Exam score not assigned correctly by Professor.", 30, student.getExam("Test 1").getScore());
 		 
+	 }
+	 
+	 
+	 /*
+	 * Number: 5
+	 * Title: Bad Score assignment by Professor
+	 * Description: A Professor should be associated to an exam. When a Professor set an exam score out of the prefixed
+	 * range (from 18 to 30) an exception should be thrown. Professor is a mocked class.
+	 * 
+	 */
+	 @Test(expected=OutOfRangeScoreException.class)
+	 public void BadScoreAssignmentProfessorTest() throws OutOfRangeScoreException {
+		 
+		 Student student = new Student(new Transcript());
+		 Exam exam = new Exam("Test 1", 6);
+		 exam.setProfessor(mockProfessor);
+		 
+		 student.addExam(exam);
+		 
+		 assertEquals("Exam score not initialised correctly.", -1, student.getExam("Test 1").getScore());
+		 
 		 when(mockProfessor.giveScore()).thenReturn(50);
-		 student.getExam("Test 2").giveScore();
-		 assertEquals("Exam score not assigned correctly by Professor.", -1, student.getExam("Test 2").getScore());
-		 assertEquals("Should output an error message for score out of the prefixed range.", "Score out of range.\n", output.toString());
+		 student.getExam("Test 1").giveScore();
 		 
 	 }
 	 
 	 
 	 /*
-	  * Number: 5
+	  * Number: 6
 	  * Title: Average score evaluation.
 	  * Description: When the score average is requested by the student, a copy of the transcript is passed to a DegreeCourse for the
 	  * evaluation, implementing a defensive copy. All the exams with a score different from -1 must be considered
@@ -220,7 +233,7 @@ public class DefensiveCopyTest {
 	
 	
 	/*
-	 * Number: 6 
+	 * Number: 7
 	 * Title: Exam removal.
 	 * Description: An exam can be removed from a transcript. Therefore it shoudl not be considered in the average score evaluation.
 	 * 
@@ -262,7 +275,7 @@ public class DefensiveCopyTest {
 	
 	
 	/*
-	 * Number: 7
+	 * Number: 8
 	 * Title: Clear Transcript.
 	 * Description: All the included exams are removed from the transcript.
 	 * 
