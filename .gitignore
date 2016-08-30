@@ -1,9 +1,10 @@
 *.*~
-/bin/
+/bin/*
 
 .project
-.settings
+
 .classpath
+/.DS_Store
 /target/
-/src/
+/.settings/*
 pom.xml
