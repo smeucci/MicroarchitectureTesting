@@ -9,10 +9,10 @@ public class Not extends Composite{
 	}
 	
 	public void draw() {
-		System.out.print(getName());
-		System.out.print("(");
+		System.out.print(getName() + " ");
+		//System.out.print("(");
 		child.draw();
-		System.out.print(")");
+		//System.out.print(")");
 	}
 	
 	public Boolean evaluate() {
