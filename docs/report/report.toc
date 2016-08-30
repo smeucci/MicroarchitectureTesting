@@ -1,0 +1,19 @@
+\select@language {italian}
+\contentsline {chapter}{Indice}{i}{section*.2}
+\contentsline {section}{\numberline {0.1}Introduzione}{1}{section.0.1}
+\contentsline {section}{\numberline {0.2}Microarchitetture}{1}{section.0.2}
+\contentsline {subsection}{\numberline {0.2.1}Termostato}{1}{subsection.0.2.1}
+\contentsline {subsection}{\numberline {0.2.2}Copia difensiva}{1}{subsection.0.2.2}
+\contentsline {subsection}{\numberline {0.2.3}Generatore di espressioni booleane}{1}{subsection.0.2.3}
+\contentsline {section}{\numberline {0.3}\emph {Fault models}}{1}{section.0.3}
+\contentsline {subsection}{\numberline {0.3.1}Termostato}{1}{subsection.0.3.1}
+\contentsline {subsection}{\numberline {0.3.2}Copia difensiva}{1}{subsection.0.3.2}
+\contentsline {subsection}{\numberline {0.3.3}Generatore di espressioni booleane}{1}{subsection.0.3.3}
+\contentsline {section}{\numberline {0.4}Astrazione dei modelli}{1}{section.0.4}
+\contentsline {section}{\numberline {0.5}Criterio di copertura}{2}{section.0.5}
+\contentsline {section}{\numberline {0.6}Testing}{2}{section.0.6}
+\contentsline {subsection}{\numberline {0.6.1}Definizione della \emph {test suite}}{2}{subsection.0.6.1}
+\contentsline {subsection}{\numberline {0.6.2}JUnit}{2}{subsection.0.6.2}
+\contentsline {subsection}{\numberline {0.6.3}Mockito}{2}{subsection.0.6.3}
+\contentsline {section}{\numberline {0.7}Conclusioni}{2}{section.0.7}
+\contentsline {chapter}{Bibliografia}{3}{section*.4}
