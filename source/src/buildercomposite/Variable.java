@@ -32,9 +32,5 @@ public class Variable extends Component {
     public Boolean evaluate() {
         return getValue();
     }
-    
-    public void add(Component c) {
-    	System.out.println("Error! Trying to add a child on a Leaf!");
-    }
 
 }
