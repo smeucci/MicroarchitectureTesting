@@ -15,7 +15,7 @@ import org.mockito.MockitoAnnotations;
 
 import defensivecopy.*;
 
-public class FunctionalityTest {
+public class DefensiveCopyTest {
 
 	@Mock Professor mockProfessor;
 	

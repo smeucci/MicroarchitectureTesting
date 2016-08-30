@@ -14,11 +14,11 @@ import org.mockito.MockitoAnnotations;
 
 import buildercomposite.*;
 
-public class FunctionalityTest {
+public class BuildercompositeTest {
 
 	@Mock ValueInitialiser mockInit;
 	
-	private ByteArrayOutputStream output = new ByteArrayOutputStream();
+	private final ByteArrayOutputStream output = new ByteArrayOutputStream();
 	
 	@Before
 	public void setup() throws Exception {
