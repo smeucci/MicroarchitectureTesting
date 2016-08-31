@@ -38,13 +38,13 @@ public class BuildercompositeTest {
 	
 	/*
 	 * Number: 1
-	 * Title: Adding a component to a leaf.
+	 * Title: Adding a component to a Variable.
 	 * Description: Variable extends the abstract class Component. When the add method of the Variable class 
 	 * is called, an exception should be thrown.
 	 * 
 	 */
 	@Test(expected=InvalidComponentAddingException.class)
-	public void AddingComponentToLeafTest() throws InvalidComponentAddingException {
+	public void AddingComponentToVariableTest() throws InvalidComponentAddingException {
 		
 		ExprBuilder builder = new ConcreteExprBuilder();
 		Component varx = builder.BuildVariable("X", true);
@@ -58,19 +58,19 @@ public class BuildercompositeTest {
 	
 	/*
 	 * Number: 2
-	 * Title: Adding a component to a composite.
-	 * Description: Composite extends the abstract class Component. When the add method of the classes that extends the Composite class, the passed component(s)
+	 * Title: Adding a component to a Operator.
+	 * Description: Operator extends the abstract class Component. When the add method of the classes that extends the Operator class, the passed component(s)
 	 * should be added to the children components list and no exception should be thrown.
 	 * 
 	 */
 	@Test
-	public void AddingComponentToComposite() throws InvalidComponentAddingException{
+	public void AddingComponentToOperator() throws InvalidComponentAddingException{
 		
 		ExprBuilder builder = new ConcreteExprBuilder();
 		Component varx = builder.BuildVariable("X", true);
 		Component vary = builder.BuildVariable("Y", false);
 		
-		//ADD method for classes that extend Composite. The add method is called inside builder.Build..
+		//ADD method for classes that extend Operator. The add method is called inside builder.Build..
 		builder.BuildAnd(varx, vary);
 		builder.BuildOr(varx, vary);
 		builder.BuildNot(varx);
@@ -124,9 +124,9 @@ public class BuildercompositeTest {
 	
 	/*
 	 * Number: 4
-	 * Title: Expression Evaluation.
-	 * Description: A generic boolean expression must be correctly evaluated for all possible variables values. The values are
-	 * initialised thanks to the mocked class ValueInitialiser and its method initValue().
+	 * Title: Expression Evaluation and Output.
+	 * Description: A generic boolean expression must be correctly evaluated for all possible variables values. The expression output must 
+	 * also be as expected wrt the evaluation.The values are initialised thanks to the mocked class ValueInitialiser and its method initValue().
 	 * 
 	 */
 	@Test

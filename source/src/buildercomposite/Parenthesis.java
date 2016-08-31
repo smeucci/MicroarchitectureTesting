@@ -3,7 +3,7 @@ package buildercomposite;
 /**
  * 
  */
-public class Parenthesis extends Composite {
+public class Parenthesis extends Operator {
 
     private Component child;
     

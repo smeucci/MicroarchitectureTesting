@@ -128,7 +128,7 @@ public class DefensiveCopyTest {
 	/*
 	 * Number: 3
 	 * Title: Student-Transcript association.
-	 * Description: A transcript can be associated to a Student. The association is made using a defensive copy wrt to the transcript.
+	 * Description: A transcript can be associated to a Student. The association is made using a defensive copy wrt the Transcript object.
 	 * 
 	 */
 	@Test
@@ -205,7 +205,9 @@ public class DefensiveCopyTest {
 	  * Number: 6
 	  * Title: Average score evaluation.
 	  * Description: When the score average is requested by the student, a copy of the transcript is passed to a DegreeCourse for the
-	  * evaluation, implementing a defensive copy. All the exams with a score different from -1 must be considered
+	  * evaluation, implementing a defensive copy. All the exams with a score different from -1 must be considered.
+	  * Verify that the computed score average is equal to a prefixed one.
+	  * 
 	  */
 	@Test
 	public void AverageScoreEvaluationTest() {
@@ -235,7 +237,7 @@ public class DefensiveCopyTest {
 	/*
 	 * Number: 7
 	 * Title: Exam removal.
-	 * Description: An exam can be removed from a transcript. Therefore it shoudl not be considered in the average score evaluation.
+	 * Description: An exam can be removed from a transcript. Therefore it should not be considered in the average score evaluation.
 	 * 
 	 */
 	@Test
@@ -277,7 +279,7 @@ public class DefensiveCopyTest {
 	/*
 	 * Number: 8
 	 * Title: Clear Transcript.
-	 * Description: All the included exams are removed from the transcript.
+	 * Description: All the included exams are removed from the Transcript.
 	 * 
 	 */
 	@Test

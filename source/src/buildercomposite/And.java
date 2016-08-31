@@ -3,7 +3,7 @@ package buildercomposite;
 /**
  * 
  */
-public class And extends Composite {
+public class And extends Operator {
 
 	private Component[] children = new Component[2];
 	

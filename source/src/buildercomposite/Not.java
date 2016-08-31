@@ -1,6 +1,6 @@
 package buildercomposite;
 
-public class Not extends Composite{
+public class Not extends Operator{
 	
 	private Component child;
 	
