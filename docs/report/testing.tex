@@ -1,10 +1,31 @@
 \section{Testing}
 
-Descrizione breve delle fasi dedicate al testing
+Una volta individuato il criterio di copertura ottimale, si procede con la definizione di una \emph{test suite}, un insieme di test che, se verificati, rispettano le specifiche imposte dal criterio scelto.
 
 \subsection{Definizione della \emph{test suite}}
 
-Mostrare qui la tabella della test suite fornendone una descrizione sommaria
+Per la creazione e la definizione della \emph{test suite} è stato utile rappresentare i possibili test in una tabella. Nella tabella è presente il numero del test (un progressivo identificativo del singolo test), il titolo (cosa riguarda il test), una descrizione (in cui viene esplicitato il risultato atteso del test) ed un indicatore per la sua corretta esecuzione o meno.
+
+I test definiti verificano le funzionalità principali dei sistemi in esame, andando a coprire nella loro interezza le criticità esposte nel \emph{fault model}.
+
+\begin{table}[ht]
+\caption{Test suite - Thermostat}
+\centering % used for centering table
+\begin{tabular}{|p{1cm}|p{3cm}|p{6cm}|p{2cm}|} % centered columns (4 columns)
+\hline\hline %inserts double horizontal lines
+\textbf{Num} & \textbf{Titolo} & \textbf{Descrizione} & \textbf{Verificato} \\ [0.5ex] % inserts table
+%heading
+\hline % inserts single horizontal line
+1 & Verifica stato iniziale & Inizialmente lo stato del soggetto osservato deve essere impostato su READY & OK \\ \hline% inserting body of the table
+2 & Verifica aggiornamento della temperatura & Il termostato si comporta in modo differente in base alla temperatura rilevata dal componente, aggiornando lo stato del controllore e attuando la corretta strategia. Se la temperatura rilevata è minore a quella impostata dal termostato, lo stato del controllore è impostato a ON; se sono uguali è impostato a READY; altrimenti a OFF. & OK \\ \hline
+3 & Verifica \emph{observers} iniziali & Inizialmente il numero degli \emph{observers} associati ad un soggetto è 0. & OK \\ \hline
+4 & Aggiunta \emph{observer} & Quando un nuovo \emph{observer} è associato ad un soggetto, il numero degli \emph{observers} nella lista del soggetto aumenta correttamente di 1. & OK \\ \hline
+5 & Rimozione \emph{observer} & Quando un \emph{observer} è rimosso da un soggetto, il numero di elementi nella sua lista diminuisce di 1. & OK \\ \hline
+6 & Notifica agli \emph{observers} & Quando la temperatura rilevata dal dispositivo si aggiorna (cambia), tutti gli \emph{observers} presenti nella lista del dispositivo vengono notificati. & OK \\ [1ex] % [1ex] adds vertical space
+\hline %inserts single line
+\end{tabular}
+\label{table:observerstrategy} % is used to refer this table in the text
+\end{table}
 
 \subsection{JUnit}
 
