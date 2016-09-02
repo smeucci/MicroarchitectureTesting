@@ -1,38 +1,38 @@
-\section{\emph{Fault models}}
+\chapter{\emph{Fault models}}
 
 Un \emph{fault model}, nell'ambito software, è un modello che rappresenta ciò che può andare storto durante l'operazione di un programma. Grazie a questo modello, è possibile predire le conseguenze dei vari faults.
 
-Nel nostro caso, i faults individuati sono sia legati alla struttura stessa del sistema, dipendente dai design pattern utilizzati per realizzare le micro-architetture, sia legati al tipo di problema specifico, come ad esempio vincoli su certi valori.
+Nel nostro caso, i faults individuati sono sia legati alla struttura stessa del sistema, dipendente dai \emph{design patterns} utilizzati per realizzare le micro-architetture, sia legati al tipo di problema specifico, come ad esempio vincoli su certi valori.
 
-\subsection{Termostato}
+\section{Termostato}
 
-In questa micro-architettura, le criticità sono principalmente legate ai design patterns utilizzati, nello specifico i design patterns \emph{Observer} e \emph{Strategy}.
+In questa micro-architettura, le criticità sono principalmente legate ai \emph{design patterns} utilizzati, nello specifico \emph{Observer} e \emph{Strategy}.
 
-I possibili faults dell'\emph{Observer} riguardano innanzitutto la registrazione e la rimozione di observer da parte di un device, ovvero del soggetto osservato. In particolare, può avvenire una registrazione non corretta quando viene instanziato un observer ma non viene registrato dal Device, ovvero non è inserito nella sua lista di observers da notificare; la criticità della rimozione di un observer è legata al caso in cui, distrutto l'oggetto observer, questo rimane referenziato dal qualche parte, ad esempio nella lista degli observer di un device. Tale situazione può portare al caso in cui qualcuno nell'esecuzione del programma possa chiedere a quell'observer, distrutto, di fare qualcosa.
-Infine, per quando riguarda tale design pattern, un possibile fault è legato alla fase di aggiornamento della temperatura nei singoli devices (soggetti) nel caso in cui non vengano notificati tutti gli observers a lui associati.
+I possibili faults dell'\emph{Observer} riguardano innanzitutto la registrazione e la rimozione di un observer da parte di un device, ovvero del soggetto osservato. In particolare, può avvenire una registrazione non corretta quando viene instanziato un observer ma non viene registrato dal device, ovvero non è inserito nella sua lista di observers da notificare; la criticità della rimozione di un observer è legata al caso in cui, distrutto l'oggetto observer, questo rimane referenziato dal qualche parte, ad esempio nella lista degli observer di un device. Tale situazione può portare al caso in cui qualcuno nell'esecuzione del programma possa chiedere a quell'observer, distrutto, di fare qualcosa.
+Infine, per quando riguarda tale \emph{design pattern}, un possibile fault è legato alla fase di aggiornamento della temperatura nei singoli devices (soggetti) nel caso in cui non vengano notificati tutti gli observers a lui associati.
 
-Per quanto riguarda invece il design pattern \emph{Strategy}, la criticità è legata ad una non corretta esecuzione della giusta strategia, dipendente dalla temperatura rilevata, al cambio di stato del device.
+Per quanto riguarda invece il \emph{design pattern} \emph{Strategy}, la criticità è legata ad una non corretta esecuzione della giusta strategia, dipendente dalla temperatura rilevata, al cambio di stato del device.
 
 
-\subsection{Copia difensiva}
+\section{Copia difensiva}
 
-Questa micro-architettura non fa utilizzo di design patterns ma implementa la tecnica della \emph{copia difensiva}. Il fault legato a tale strategia riguarda un'errata copia dell'oggetto, ovvero se non tutti i suoi attributi sono copiati correttamente. Ciò può portare ad utilizzare attributi che nell'oggetto originati sono instanziati, ma nella copia non lo sono, cosicché il programma tenta di usare \emph{null} quando invece è richiesto un oggetto.
+Questa micro-architettura non fa utilizzo di \emph{design patterns} ma implementa la tecnica della \emph{copia difensiva}. Il fault legato a tale strategia riguarda un'errata copia dell'oggetto, ovvero se non tutti i suoi attributi sono copiati correttamente. Ciò può portare a cercare di utilizzare attributi che nell'oggetto originale sono instanziati, ma nella copia non lo sono.
 
-Il fault legato alla copia difensiva può manifestarsi durante l'inserimento di un esame in un libretto, poichè viene inserita una copia dell'oggetto Esame, così come durante il calcolo della media dei voti degli esami presenti in un libretto, poichè ciò che viene passato all'oggetto di classe DegreeCourse è una copia dell'oggetto Transcript (libretto).
+Il fault legato alla copia difensiva può manifestarsi durante l'inserimento di un esame in un libretto, poichè viene inserita una copia dell'oggetto esame, così come durante il calcolo della media dei voti degli esami presenti in un libretto, poichè ciò che viene passato all'oggetto di classe DegreeCourse è una copia dell'oggetto libretto.
 
 Altre possibili criticità, legate al tipo di problema specifico, riguardano l'assegnamento dei voti agli esami e il calcolo della media.
-Per quanto concerne l'assegnamento dei voti agli esami, esso deve rispettare dei vincoli di range dei valori, in questo caso fra 18 e 30 compresi, ed altrimenti generare un'eccezione e ritenere quindi l'assegnamento del voto non valido cosiccè l'esame non aggiorni il suo attributo legato al voto.
+Per quanto concerne l'assegnamento dei voti agli esami, esso deve rispettare dei vincoli di range dei valori in questo caso fra 18 e 30 compresi. In caso contrario deve generare un'eccezione e ritenere quindi l'assegnamento non valido cosicché l'esame non aggiorni il suo attributo legato al voto.
 Il fault legato ad un calcolo errato della media dei voti degli esami può riguardare sia un'errata computazione sia all'impiego nel calcolo di esami ai quali è sono stato assegnato un voto, o all'impiego di esami che dovrebbero essere stati rimossi dal libretto considerato.
 
-L'ultimo caso può verificarsi se, per qualche motivo, la rimozione degli esami viene fatto su un libretto copia diverso da quello che viene passato al corso di laura per fare il calcolo della media.
+L'ultimo caso può verificarsi se, per qualche motivo, la rimozione degli esami viene fatta su una copia di un libretto diversa da quella che viene passata al corso di laurea per eseguire il calcolo della media.
 
 
-\subsection{Generatore di espressioni booleane}
+\section{Generatore di espressioni booleane}
 
-Questa micro-architettura implementa un generatore di espressioni booleani tramite l'utilizzo dei design patterns \emph{Builder} e \emph{Composite}.
+Questa micro-architettura implementa un generatore di espressioni booleani tramite l'utilizzo dei \emph{design patterns} \emph{Builder} e \emph{Composite}.
 
-Le criticità legate al \emph{Composite} riguardano in particolare il metodo \textit{add} che permette di aggiungere componenti ad altri componenti. I componenti leaf non possono tuttavia eseguire tale operazione a differenza dei componenti composite. L'implementazione base del metodo \emph{add} è realizzata nella classe astratta Component, assumento come caso base quello di componenti leaf e generando così un'eccezione. L'implementazione del metodo \emph{add} per i componenti composite è lasciato alla classe Composite ed eventualmente alle classi che la estendono, tramite override.
+Le criticità legate al \emph{Composite} riguardano in particolare il metodo \textit{add} che permette di aggiungere componenti ad altri componenti. I componenti \emph{leaf} non possono tuttavia eseguire tale operazione a differenza dei componenti \emph{composite}. L'implementazione base del metodo \emph{add} è realizzata nella classe astratta Component, assumento come caso base quello di componenti \emph{leaf} e generando così un'eccezione. L'implementazione del metodo \emph{add} per i componenti \emph{composite} è lasciato alla classe Composite ed eventualmente alle classi che la estendono, tramite override.
 
-I faults riguardanti il design pattern \emph{Builder} sono tutti quelli legati ad una costruzione di oggetti, in questo caso componenti e espressioni booleani, diversa da quella desiderata dal client che da solo delle istruzioni su come realizzare tali oggetti ma l'implementazione è affidata interamente all'oggetto Builder.
+I faults riguardanti il \emph{design pattern} \emph{Builder} sono tutti quelli legati ad una costruzione di oggetti, in questo caso componenti e espressioni booleani, diversa da quella desiderata dal client che da solo delle istruzioni su come realizzare tali oggetti ma l'implementazione è affidata interamente all'oggetto Builder.
 
 Infine, una criticità può essere legata nella fase di valutazione delle espressioni booleani e dei suoi componenti.

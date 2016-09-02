@@ -1,9 +1,9 @@
-\section{Microarchitetture}
+\chapter{Microarchitetture}
 
 Le micro-architetture discusse di seguito sono state ideate avendo come base i testi degli esami del corso di Ingegneria del Software nell'anno 2016. In particolare sono stati scelti tre esami fra i più adatti al tipo di elaborato in oggetto.
 Tali esercizi sono stati poi modificati ed estesi, con funzionalità e nuove classi, per renderli più interessanti nelle fasi successi di analisi e testing.
 
-\subsection{Termostato}
+\section{Termostato}
 
 Il sistema considerato riguarda una gestione semplificata di apparecchiature di riscaldamento mediante l’uso di un termostato. 
 
@@ -38,7 +38,7 @@ Si dettaglino frammenti di codice della realizzazione che illustrano gli aspetti
 Il sistema è implementato mediante l’utilizzo della combinazione di due design patterns, \emph{Observer} e \emph{Strategy}. Ciascun apparecchio rappresenta un \emph{Soggetto} che verrà monitorato da un \emph{Controller} (con la funzione di Observer). Al variare della temperatura rilevata dal \emph{Soggetto}, questa verrà notificata al suo \emph{Controllore} che andrà ad eseguire una strategia dipendente dallo stato in cui si trova il sistema.
 
 
-\subsection{Copia difensiva}
+\section{Copia difensiva}
 
 La micro-architettura rappresenta un sistema di gestione degli esami da parte di uno studente. 
 
@@ -77,7 +77,7 @@ Si motivi la convenienza di realizzare una copia difensiva al momento della crea
 Il sistema è implementato utilizzando la tecnica della \emph{copia difensiva}, ovvero invece di condividere l'oggetto originale, nel caso di studio il libretto o l'esame, viene condivisa una copia di esso, in modo da limitare gli effetti negativi di modifiche inattese.
 
 
-\subsection{Generatore di espressioni booleane}
+\section{Generatore di espressioni booleane}
 
 Il sistema considerato riguarda la creazione di espressioni booleane, potendo combinare fra di loro variabili booleane, operatori logici quali AND, OR, NOT e l'uso di parentesi.
 
