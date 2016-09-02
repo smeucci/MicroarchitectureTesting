@@ -69,9 +69,90 @@ I test definiti verificano le funzionalità principali dei sistemi in esame, and
 
 \subsection{JUnit}
 
-Senza descrizione sommaria (lo diamo per buono) basta dire che è una libreria java dedicata al testing di unità. Mettiamo qui qualche esempio di uso (magari prendendo dei casi di test, uno da ciascuna architettura) con il codice.
+Per l'implementazione dei test definiti nella \emph{Test Suite} è stata utilizzata un framework Java per il testing di unità: JUnit\footnote{JUnit, versione 4 - http://junit.org/junit4/}.
+
+Il \emph{test di unità} prevede di andare a verificare e testare le singole entità del mio sistema (classi o metodi) al fine si assicurarsi che le singole unità di sviluppo assolvano le funzioni seguendo i requisiti, facendo sì, in questo modo, che, integrandole in sistemi più complessi, continuino a rispettarli. 
+L'idea alla base è dunque quella di valutare ogni singolo metodo (o funzionalità) del sistema in funzione dei valori attesi.
+
+Il framework mette a disposizione degli sviluppatori un insieme di \emph{annotazioni Java}, volte a indicare i vari test da eseguire e quali operazioni compiere prima e dopo il test eseguito.
+
+\begin{lstlisting}
+import static org.junit.Assert.*;
+public class ThermostatTest {
+	...		
+	@Before
+	public void setup() {
+		Strategy strategy = StrategyReady.getInstance();
+		device = new Device();
+		device.setSensor(sensor);
+		controller = new Controller(strategy, device);	
+		thermostat = new Thermostat();
+		thermostat.addObject(controller);
+		//Initialize thermostat to 20 degrees
+		thermostat.setTemperature(20);
+	}
+\end{lstlisting}
+
+Nell'esempio riportato sopra si nota la presenza di un metodo di inizializzazione (\emph{setup()}) che, grazie all'annotazione \emph{@Before} viene eseguito prima dell'esecuzione di ciascuna funzione test. Questo per consentire l'inizializzazione di variabili o attributi di classe utili per l'esecuzione del test stesso.
+
+I metodi test (annotati opportunamente dall'annotazione \emph{@Test}) verranno eseguiti senza un ordine preciso, quindi non necessariamente vengono eseguiti nell'ordine definito. Un test fallisce se fallisce almeno uno dei metodi \emph{assert} contenuti in esso. I metodi assert sono metodi statici contenuti che effettuano una semplice comparazione tra il risultato atteso ed il risultato dell'esecuzione. 
+
+\begin{lstlisting}
+	/*
+	 * Number: 1
+	 * Title: Exam creation
+	 * Description: An exam is created with the desired name, the desired 
+	 * CFU and a default score of -1.
+	 */
+	@Test
+	public void ExamCreationTest() {
+		Exam exam = new Exam("Test Exam", 9);
+		assertEquals("Exam name not correctly assigned.", "Test Exam", 
+							exam.getName());
+		assertEquals("Exam cfu not correctly assigned.", 9, exam.getCFU());
+		assertEquals("Exam score not correctly initialised.", -1, 
+							exam.getScore());	
+	}
+\end{lstlisting}
+
+Nel caso precedente, che implementa il test numero 1 sul sistema della copia difensiva, viene verificato che un esame sia creato correttamente. Se una delle asserzioni fallisce, il test fallisce e vengono mostrati i messaggi specificati.
+
+Un test anche potrebbe sollevare una eccezione: in questi casi è interessante l'uso del parametro \emph{expected} nell'annotazione dove diciamo che è attesa l'eccezione. Se il metodo non solleva quel tipo di eccezione il test sarà fallito.
+
+\begin{lstlisting}
+	/*
+	 * Number: 1
+	 * Title: Adding a component to a Variable.
+	 * Description: Variable extends the abstract class Component. 
+	 * When the add method of the Variable class 
+	 * is called, an exception should be thrown.
+	 * 
+	 */
+	@Test(expected=InvalidComponentAddingException.class)
+	public void AddingComponentToVariableTest() throws 
+								InvalidComponentAddingException {		
+		ExprBuilder builder = new ConcreteExprBuilder();
+		Component varx = builder.BuildVariable("X", true);
+		Component vary = builder.BuildVariable("Y", false);
+		varx.add(vary);
+	}
+\end{lstlisting}
+
+Nel caso considerato è il test numero 1 sul sistema di generazione di espressioni booleane. Nel caso in cui il metodo \emph{add()} venga invocato su un'istanza della classe \emph{Variable} deve essere lanciata un'eccezione. Il test dunque è considerato passato se questa viene lanciata. 
+
+Ciascun test presente nella Test Suite è stato implementato e verificato con JUnit, indicando per ciascuno il riferimento alla tabella. La colonna \emph{Stato} della tabella indica su i test sono passati o meno.
 
 \subsection{Mockito}
+
+In alcune circostanze alcune classi dipendono da valori calcolati in altre classi che potrebbero però non essere ancora state implementate o semplicemente non essere direttamente accessibili (ad esempio un servizio Web in fase di sviluppo). In questi casi è comunque opportuno procedere effettuando test sul proprio sistema, ma è necessario in qualche modo simulare la presenza della classi da cui esso dipende.
+
+Per questo scopo viene utilizzato \emph{Mockito}\footnote{Mockito, \emph{Tasty mocking framework for unit tests in Java} - http://mockito.org/}, un framework di \emph{mocking} utilizzato nel test di unità.
+
+Mockito consente di definire oggetti \emph{mocked}, ovvero finte implementazioni di interfacce o classi astratte per le quali vengono specificati manualmente gli output desiderati per determinate chiamate ai metodi. Al fine di sperimentare il framework, le architetture prevedono l'utilizzo di una classe \emph{mocked} al loro interno. 
+
+Come nel caso di JUnit, anche Mockito opera mediante delle semplici annotazioni: tramite \emph{@Mock} è possibile indicare quale è l'oggetto che desideriamo implementare con Mockito, poi, tramite il metodo statico \emph{when()} è possibile indicare l'output desiderato dei suoi metodi.
+
+
 
 Descrizione breve di mockito e a cosa serve
 
