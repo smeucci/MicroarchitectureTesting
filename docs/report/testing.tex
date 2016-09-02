@@ -8,12 +8,12 @@ Per la creazione e la definizione della \emph{test suite} è stato utile rappres
 
 I test definiti verificano le funzionalità principali dei sistemi in esame, andando a coprire nella loro interezza le criticità esposte nel \emph{fault model}.
 
-\begin{table}[ht]
-\caption{Test suite - Thermostat}
+\begin{table}[h!]
+\caption{Test suite - Termostato}
 \centering % used for centering table
-\begin{tabular}{|p{1cm}|p{3cm}|p{6cm}|p{2cm}|} % centered columns (4 columns)
+\begin{tabular}{|p{1cm}|p{3cm}|p{7cm}|p{1cm}|} % centered columns (4 columns)
 \hline\hline %inserts double horizontal lines
-\textbf{Num} & \textbf{Titolo} & \textbf{Descrizione} & \textbf{Verificato} \\ [0.5ex] % inserts table
+\textbf{Num} & \textbf{Titolo} & \textbf{Descrizione} & \textbf{Stato} \\ [0.5ex] % inserts table
 %heading
 \hline % inserts single horizontal line
 1 & Verifica stato iniziale & Inizialmente lo stato del soggetto osservato deve essere impostato su READY & OK \\ \hline% inserting body of the table
@@ -24,8 +24,48 @@ I test definiti verificano le funzionalità principali dei sistemi in esame, and
 6 & Notifica agli \emph{observers} & Quando la temperatura rilevata dal dispositivo si aggiorna (cambia), tutti gli \emph{observers} presenti nella lista del dispositivo vengono notificati. & OK \\ [1ex] % [1ex] adds vertical space
 \hline %inserts single line
 \end{tabular}
-\label{table:observerstrategy} % is used to refer this table in the text
+\label{table:observerstrategy} 
 \end{table}
+
+\begin{table}[h!]
+\caption{Test suite - Gestione libretto universitario}
+\centering % used for centering table
+\begin{tabular}{|p{1cm}|p{3cm}|p{7cm}|p{1cm}|} % centered columns (4 columns)
+\hline\hline %inserts double horizontal lines
+\textbf{Num} & \textbf{Titolo} & \textbf{Descrizione} & \textbf{Stato} \\ [0.5ex] % inserts table
+%heading
+\hline % inserts single horizontal line
+1 & Creazione di un esame & Un esame è creato correttamente con il nome desiderato, i CFU impostati ed il voto impostato a -1 (valore di default) & OK \\ \hline% inserting body of the table
+2 & Inserimento di un esame nel libretto & Un esame è correttamente inserito nel libretto. L'inserimento è effettuato mediante una copia difensiva dell'oggetto di tipo Esame. La lista degli esami contenuti nel libretto deve dunque aumentare di uno. & OK \\ \hline
+3 & Associazione Studente-Libretto &Un libretto può essere associato ad uno studente. L'associazione è effettuata usando una copia difensiva dell'oggetto Libretto. & OK \\ \hline
+4 & Assegnazione di un voto ammesso & Un professore può associare un voto ad un esame. Quando il professore imposta il voto a un esame, se questo si trova nel range tra 18 e 30, il valore del voto associato all'esame deve cambiare in accordo all'assegnamento. Il professore è una classe \emph{mocked}. & OK \\ \hline
+5 & Assegnazione di un voto non ammesso & Quando un professore imposta un voto fuori dal \emph{range} prefissato (da 18 a 30) ad un esame, deve essere lanciata un'eccezione.  & OK \\ \hline
+6 & Calcolo della media & Quando è richiesto il calcolo della media dei voti degli esami di uno studente, una copia del libretto è usata all'oggetto Corso di Laurea, effettuando dunque una copia difensiva. Tutti gli esami con un voto diverso da -1 (il valore di default) devono essere considerati nel calcolo della media. Verificare che la media calcolata automaticamente sia corretta. & OK \\ \hline
+7 & Rimozione di un esame & Un esame può essere rimosso da un libretto. Da quel momento non deve più essere conteggiato nel calcolo della media dei voti. & OK \\ \hline
+8 & Ripristino del libretto & Effettuando un ripristino del libretto tutti gli esami al suo interno sono correttamente rimossi. & OK \\ [1ex] % [1ex] adds vertical space
+\hline %inserts single line
+\end{tabular}
+\label{table:defensivecopy}
+\end{table}
+
+
+\begin{table}[h!]
+\caption{Test suite - Generatore espressioni booleane}
+\centering % used for centering table
+\begin{tabular}{|p{1cm}|p{3cm}|p{7cm}|p{1cm}|} % centered columns (4 columns)
+\hline\hline %inserts double horizontal lines
+\textbf{Num} & \textbf{Titolo} & \textbf{Descrizione} & \textbf{Stato} \\ [0.5ex] % inserts table
+%heading
+\hline % inserts single horizontal line
+1 & Aggiunta di un componente ad una Variabile & La classe Variabile estende la classe astratta Componente. Quando il metodo \emph{add()} viene invocato su un'istanza della classe Variabile deve essere lanciata un'eccezione. & OK \\ \hline% inserting body of the table
+2 & Aggiunta di un componente ad un operatore & La classe Operatore estende la classe astratta Component. Quando il metodo \emph{add()} viene invocato su un'istanza di una classe che estende la classe Operator, i componenti passati come parametri devono essere aggiunti alla lista dei componenti dei figli (senza lanciare alcuna eccezione). & OK \\ \hline
+3 & Generatore di espressioni concrete & Quando un'espressione (Variable, And, Or, Not, Parenthesis) è costruita, deve avere gli attributi impostati nel modo corretto. & OK \\ \hline
+4 & Valutazione e output di un'espressione & Una generica espressione booleana deve essere correttamente valutata per tutti i possibili valori delle variabili in essa contenute. L'output dell'espressione deve essere inoltre quello atteso, in accordo con la valutazione. I valori delle variabili sono inizializzati grazie ad una classe \emph{mocked} (ValuesInitialiser) ed il suo metodo \emph{initVar()}. & OK \\ [1ex] % [1ex] adds vertical space
+\hline %inserts single line
+\end{tabular}
+\label{table:observerstrategy} 
+\end{table}
+
 
 \subsection{JUnit}
 

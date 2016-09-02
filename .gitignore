@@ -25,3 +25,7 @@ docs/report/images/.DS_Store
 source/src/buildercomposite/.DS_Store
 
 source/src/defensivecopy/.DS_Store
+
+docs/report/report.out
+
+docs/report/report.toc
