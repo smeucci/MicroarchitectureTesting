@@ -1,8 +1,8 @@
-\section{Testing}
+\chapter{Testing}
 
 Una volta individuato il criterio di copertura ottimale, si procede con la definizione di una \emph{test suite}, un insieme di test che, se verificati, rispettano le specifiche imposte dal criterio scelto.
 
-\subsection{Definizione della \emph{test suite}}
+\section{Definizione della \emph{test suite}}
 
 Per la creazione e la definizione della \emph{test suite} è stato utile rappresentare i possibili test in una tabella. Nella tabella è presente il numero del test (un progressivo identificativo del singolo test), il titolo (cosa riguarda il test), una descrizione (in cui viene esplicitato il risultato atteso del test) ed un indicatore per la sua corretta esecuzione o meno.
 
@@ -67,7 +67,7 @@ I test definiti verificano le funzionalità principali dei sistemi in esame, and
 \end{table}
 
 
-\subsection{JUnit}
+\section{JUnit}
 
 Per l'implementazione dei test definiti nella \emph{Test Suite} è stata utilizzata un framework Java per il testing di unità: JUnit\footnote{JUnit, versione 4 - http://junit.org/junit4/}.
 
@@ -99,23 +99,30 @@ I metodi test (annotati opportunamente dall'annotazione \emph{@Test}) verranno e
 
 \begin{lstlisting}
 	/*
-	 * Number: 1
-	 * Title: Exam creation
-	 * Description: An exam is created with the desired name, the desired 
-	 * CFU and a default score of -1.
+	 * Number: 3
+	 * Title: Student-Transcript association.
+	 * Description: A transcript can be associated to a Student. 
+	 * The association is made using a defensive copy wrt the Transcript object.
 	 */
 	@Test
-	public void ExamCreationTest() {
-		Exam exam = new Exam("Test Exam", 9);
-		assertEquals("Exam name not correctly assigned.", "Test Exam", 
-							exam.getName());
-		assertEquals("Exam cfu not correctly assigned.", 9, exam.getCFU());
-		assertEquals("Exam score not correctly initialised.", -1, 
-							exam.getScore());	
+	public void StudentTranscriptAssociationTest() {		
+		ArrayList<Exam> exams = new ArrayList<Exam>();
+		exams.add(new Exam("Test 1", 6));
+		exams.add(new Exam("Test 2", 6));		
+		Transcript transcript = new Transcript(exams);		
+		Student student = new Student(transcript);		
+		// Check that the copy and the original transcript have the same size.
+		assertEquals("The size of the two transcripts should be equal.", 
+						transcript.getExams().size(), student.getExams().size());		
+		// Check that changes to the copy transcript do not affect the original 
+		// transcript.
+		student.addExam(new Exam("Test 3", 9));
+		assertNotEquals("The size of the two transcripts should be different.", 
+						transcript.getExams().size(), student.getExams().size());		
 	}
 \end{lstlisting}
 
-Nel caso precedente, che implementa il test numero 1 sul sistema della copia difensiva, viene verificato che un esame sia creato correttamente. Se una delle asserzioni fallisce, il test fallisce e vengono mostrati i messaggi specificati.
+Nel caso precedente, che implementa il test numero 3 sul sistema della copia difensiva. Se una delle asserzioni fallisce, il test fallisce e vengono mostrati i messaggi specificati.
 
 Un test anche potrebbe sollevare una eccezione: in questi casi è interessante l'uso del parametro \emph{expected} nell'annotazione dove diciamo che è attesa l'eccezione. Se il metodo non solleva quel tipo di eccezione il test sarà fallito.
 
@@ -142,7 +149,7 @@ Nel caso considerato è il test numero 1 sul sistema di generazione di espressio
 
 Ciascun test presente nella Test Suite è stato implementato e verificato con JUnit, indicando per ciascuno il riferimento alla tabella. La colonna \emph{Stato} della tabella indica su i test sono passati o meno.
 
-\subsection{Mockito}
+\section{Mockito}
 
 In alcune circostanze alcune classi dipendono da valori calcolati in altre classi che potrebbero però non essere ancora state implementate o semplicemente non essere direttamente accessibili (ad esempio un servizio Web in fase di sviluppo). In questi casi è comunque opportuno procedere effettuando test sul proprio sistema, ma è necessario in qualche modo simulare la presenza della classi da cui esso dipende.
 
