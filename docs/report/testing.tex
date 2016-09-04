@@ -159,8 +159,62 @@ Mockito consente di definire oggetti \emph{mocked}, ovvero finte implementazioni
 
 Come nel caso di JUnit, anche Mockito opera mediante delle semplici annotazioni: tramite \emph{@Mock} è possibile indicare quale è l'oggetto che desideriamo implementare con Mockito, poi, tramite il metodo statico \emph{when()} è possibile indicare l'output desiderato dei suoi metodi.
 
+Nelle tre architetture in esame, una classe è stata implementata in modo fittizio con Mockito.
+
+Nell'architettura del Termostato, ad esempio, la classe implementata in questo modo è il sensore di temperatura. La scelta è dovuta al fatto che era necessario simulare la rilevazione della temperatura, non sapendo come in realtà questa cosa avvenga.
+
+\begin{lstlisting}
+public interface TemperatureSensor {		
+	public int getTemperature();
+}
+\end{lstlisting}
+
+La classe del sensore si presenta come una semplice interfaccia con un metodo che sarà poi quello implementato da Mockito.
+
+Per indicare poi che un certo attributo di classe \emph{TemperatureSensor} è \emph{mocked} si utilizza l'annotazione \emph{@Mock} sopra lo stesso.
+
+\begin{lstlisting}
+	@Mock
+	private TemperatureSensor sensor;
+	...
+	
+	@Before
+	public void setup() {
+		MockitoAnnotations.initMocks(this);
+		...
+	}
+\end{lstlisting}
+
+Tramite il metodo statico \emph{initMocks(this)} vengono inizializzati gli oggetti \emph{mocked}. A questo punto è necessario indicare il comportamento dell'oggetto in funzione delle chiamate al metodo da implementare.
+
+\begin{lstlisting}
+	when(sensor.getTemperature()).thenReturn(20);
+\end{lstlisting}
+
+La precedente istruzione indica che, quando il metodo \emph{getTemperature()} è invocato, deve essere ristituito 20. In questo modo è possibile utilizzare la classe come se fosse correttamente implementata e il cui risultato è fissato.
+
+Con Mockito è inoltre possibile lanciare eccezioni e cambiare comportamento dopo un certo numero di chiamate della funzione.
 
 
-Descrizione breve di mockito e a cosa serve
+Nell'architettura della gestione degli esami, la classe implementata con il framework è il Professore: la scelta in questo caso è dovuta al fatto che non possiamo sapere a priori qual è il criterio con cui il Professore di un determinato esame assegnerà il voto. 
 
-Come lo abbiamo usato nelle tre architetture: qualche esempio di codice preso dai tre esempi
+\begin{lstlisting}
+public interface Professor {
+	public int giveScore();	
+}
+\end{lstlisting}
+
+Come nel caso precedente sarà necessario indicare, tramite il metodo \emph{when} il valore di ritorno della funzione \emph{giveScore()}, cioè il voto che il professore assegnerà a quello studente per il suo esame.
+
+\begin{lstlisting}
+		 when(mockProfessor.giveScore()).thenReturn(50);
+\end{lstlisting}
+
+
+Nell'ultimo caso in considerazione è stata invece \emph{mocked} la classe che assegna valori alle variabili booleane.
+
+\begin{lstlisting}
+public abstract class ValueInitialiser {
+	public abstract boolean initValue();	
+}
+\end{lstlisting}
