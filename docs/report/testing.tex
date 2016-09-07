@@ -4,7 +4,7 @@ Una volta individuato il criterio di copertura ottimale, si procede con la defin
 
 \section{Definizione della \emph{test suite}}
 
-Per la creazione e la definizione della \emph{test suite} è stato utile rappresentare i possibili test in una tabella. Nella tabella è presente il numero del test (un progressivo identificativo del singolo test), il titolo (cosa riguarda il test), una descrizione (in cui viene esplicitato il risultato atteso del test) ed un indicatore per la sua corretta esecuzione o meno.
+Per la creazione e la definizione della \emph{test suite} è stato utile rappresentare i possibili test in una tabella (Tab. 6.1-6.3). Nella tabella è presente il numero del test (un progressivo identificativo del singolo test), il titolo (cosa riguarda il test), una descrizione (in cui viene esplicitato il risultato atteso del test) ed un indicatore per la sua corretta esecuzione o meno.
 
 I test definiti verificano le funzionalità principali dei sistemi in esame, andando a coprire nella loro interezza le criticità esposte nel \emph{fault model}.
 
@@ -122,9 +122,9 @@ I metodi test (annotati opportunamente dall'annotazione \emph{@Test}) verranno e
 	}
 \end{lstlisting}
 
-Nel caso precedente, che implementa il test numero 3 sul sistema della copia difensiva. Se una delle asserzioni fallisce, il test fallisce e vengono mostrati i messaggi specificati.
+Il caso precedente implementa il test numero 3 sul sistema della copia difensiva. Se una delle asserzioni fallisce, il test fallisce e vengono mostrati i messaggi specificati.
 
-Un test anche potrebbe sollevare una eccezione: in questi casi è interessante l'uso del parametro \emph{expected} nell'annotazione dove diciamo che è attesa l'eccezione. Se il metodo non solleva quel tipo di eccezione il test sarà fallito.
+Un test potrebbe anche sollevare una eccezione: in questi casi è interessante l'uso del parametro \emph{expected} nell'annotazione dove diciamo che è attesa l'eccezione. Se il metodo non solleva quel tipo di eccezione il test sarà fallito.
 
 \begin{lstlisting}
 	/*
@@ -196,7 +196,7 @@ La precedente istruzione indica che, quando il metodo \emph{getTemperature()} è
 Con Mockito è inoltre possibile lanciare eccezioni e cambiare comportamento dopo un certo numero di chiamate della funzione.
 
 
-Nell'architettura della gestione degli esami, la classe implementata con il framework è il Professore: la scelta in questo caso è dovuta al fatto che non possiamo sapere a priori qual è il criterio con cui il Professore di un determinato esame assegnerà il voto. 
+Nell'architettura della gestione degli esami, la classe implementata con il framework è Professor: la scelta in questo caso è dovuta al fatto che non possiamo sapere a priori qual è il criterio con cui il professore di un determinato esame assegnerà il voto. 
 
 \begin{lstlisting}
 public interface Professor {
@@ -211,7 +211,7 @@ Come nel caso precedente sarà necessario indicare, tramite il metodo \emph{when
 \end{lstlisting}
 
 
-Nell'ultimo caso in considerazione è stata invece \emph{mocked} la classe che assegna valori alle variabili booleane.
+Nell'ultimo caso in considerazione è stata invece \emph{mocked} la classe che assegna valori alle variabili booleane. Come mostrato nell'esempio, la classe di cui si vuole simulare il comportamento può essere, oltre che un'interfaccia, una classe astratta.
 
 \begin{lstlisting}
 public abstract class ValueInitialiser {
